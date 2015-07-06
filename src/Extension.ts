@@ -20,7 +20,7 @@ module Pro.Motion.Extensions.Items.simpleBarChart {
                     public barsInit: Properties.PropertyList,
                     public barsScriptSet: Scripts.ScriptSet) {
 
-            super(itemSet, "simpleBarChart", "SimpleBarChart", [init], [scriptSet]);
+            super(itemSet, "simpleBarChart", "SimpleBarChart", [init, barsInit], [scriptSet, barsScriptSet]);
 
         }
     }

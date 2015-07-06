@@ -132,7 +132,7 @@ var Pro;
                     var Extension = (function (_super) {
                         __extends(Extension, _super);
                         function Extension(itemSet, bars, width, height, margin, minDomainValue, maxDomainValue, init, scriptSet, barsInit, barsScriptSet) {
-                            _super.call(this, itemSet, "simpleBarChart", "SimpleBarChart", [init], [scriptSet]);
+                            _super.call(this, itemSet, "simpleBarChart", "SimpleBarChart", [init, barsInit], [scriptSet, barsScriptSet]);
                             this.bars = bars;
                             this.width = width;
                             this.height = height;
