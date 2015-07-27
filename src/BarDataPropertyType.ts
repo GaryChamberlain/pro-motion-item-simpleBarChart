@@ -1,9 +1,9 @@
-/// <reference path="../ts/pro.motion.d.ts" />
+/// <reference path="../ts/prostyle.d.ts" />
 /// <reference path="BarDataVariableType.ts" />
 
-module Pro.Motion.Extensions.Items.simpleBarChart {
+module ProStyle.Extensions.Items.simpleBarChart {
 
-    import Properties = Pro.Motion.Models.Properties;
+    import Properties = ProStyle.Models.Properties;
     import Variables = Properties.Variables;
 
     export class BarDataPropertyType extends Properties.PropertyType {

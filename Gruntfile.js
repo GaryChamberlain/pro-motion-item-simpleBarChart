@@ -7,8 +7,8 @@ module.exports = function (grunt) {
 		grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks("grunt-ts");
 
-    var JS_FILE = "js/pro.motion.item.simpleBarChart.js";
-    var JS_MIN_FILE = "js/pro.motion.item.simpleBarChart.min.js";
+    var JS_FILE = "js/prostyle.item.simpleBarChart.js";
+    var JS_MIN_FILE = "js/prostyle.item.simpleBarChart.min.js";
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -19,8 +19,8 @@ module.exports = function (grunt) {
             }
         },
         closurecompiler: {
-            pro_motion: {
-                files: {"js/pro.motion.item.simpleBarChart.min.js": JS_FILE},
+            prostyle: {
+                files: {"js/prostyle.item.simpleBarChart.min.js": JS_FILE},
                 options: {
                     "compilation_level": "SIMPLE_OPTIMIZATIONS",
                     "language_in": "ECMASCRIPT5",
@@ -32,7 +32,7 @@ module.exports = function (grunt) {
             banner: {
                 options: {
                     banner: '/*!\n' +
-                    ' * @license: MIT License - See https://github.com/GaryChamberlain/pro-motion-item-simpleBarChart/LICENSE\n' +
+                    ' * @license: MIT License - See https://github.com/GaryChamberlain/prostyle-item-simpleBarChart/LICENSE\n' +
                     ' * @author: Gary Chamberlain, gary@pro.graphics.\n' +
                     ' **/\n'
                 },
@@ -42,8 +42,8 @@ module.exports = function (grunt) {
         copy: {
             extensions: {
                 files: [
-                    {src:JS_FILE, dest:"../../Pro-Graphics/pro-motion/js/extensions/pro.motion.item.simpleBarChart.js"},
-										{src:JS_MIN_FILE, dest:"../../Pro-Graphics/pro-motion/js/extensions/pro.motion.item.simpleBarChart.min.js"}
+                    {src:JS_FILE, dest:"../../Pro-Graphics/prostyle/js/extensions/prostyle.item.simpleBarChart.js"},
+										{src:JS_MIN_FILE, dest:"../../Pro-Graphics/prostyle/js/extensions/prostyle.item.simpleBarChart.min.js"}
                 ]
             }
         }

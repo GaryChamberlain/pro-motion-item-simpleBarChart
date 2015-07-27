@@ -1,10 +1,10 @@
-/// <reference path="../ts/pro.motion.d.ts" />
+/// <reference path="../ts/prostyle.d.ts" />
 /// <reference path="Extension.ts" />
 
-module Pro.Motion.Extensions.Items.simpleBarChart {
+module ProStyle.Extensions.Items.simpleBarChart {
 
-    import Render = Pro.Motion.Render;
-    import Util = Pro.Motion.Util;
+    import Render = ProStyle.Render;
+    import Util = ProStyle.Util;
 
     export class Renderer extends Render.Items.Item {
 

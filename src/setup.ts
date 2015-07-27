@@ -1,16 +1,16 @@
-/// <reference path="../ts/pro.motion.d.ts" />
+/// <reference path="../ts/prostyle.d.ts" />
 /// <reference path="Extension.ts" />
 /// <reference path="Props.ts" />
 
-module Pro.Motion.Extensions.Items.simpleBarChart {
+module ProStyle.Extensions.Items.simpleBarChart {
 
     var DEFAULT_WH = 50; //% of container
     var DEFAULT_M = 1; //% of chart width
 
-    import Models = Pro.Motion.Models;
-    import Serialization = Pro.Motion.Serialization;
+    import Models = ProStyle.Models;
+    import Serialization = ProStyle.Serialization;
     import Scripts = Models.Scripts;
-    import Util = Pro.Motion.Util;
+    import Util = ProStyle.Util;
 
     export function readJson(itemSet: Models.IItemSet, json): Models.Items.Item {
         var bars = Math.max(1, Math.min(Util.convertToNumber(Util.getSetup(json, "bars")), 100));

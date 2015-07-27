@@ -1,8 +1,8 @@
-/// <reference path="../ts/pro.motion.d.ts" />
+/// <reference path="../ts/prostyle.d.ts" />
 
-module Pro.Motion.Extensions.Items.simpleBarChart {
+module ProStyle.Extensions.Items.simpleBarChart {
 
-    import Variables = Pro.Motion.Models.Properties.Variables;
+    import Variables = ProStyle.Models.Properties.Variables;
 
     export class BarDataVariableType extends Variables.VariableType<number[][]> {
 
@@ -40,7 +40,7 @@ module Pro.Motion.Extensions.Items.simpleBarChart {
             return d;
         }
 
-        writeCssBucket(story: Pro.Motion.Models.Story, model: Extension, containerSize: Types.Size, bucket: any, value: number[][]) {
+        writeCssBucket(story: ProStyle.Models.Story, model: Extension, containerSize: Types.Size, bucket: any, value: number[][]) {
             var proCache = bucket.element["proCache"] || {};
             bucket.element["proCache"] = proCache;
             var index = bucket.elementIndex;

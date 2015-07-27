@@ -1,107 +1,107 @@
 /// <reference path="greensock.d.ts" />
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function autoButton(btn: any, action: any, start?: number, speedup?: number): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function checkBrowserSupport(): boolean;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function configureMetaViewport(): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function contentLoaded(win: any, fn: any): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function convertToNumber(n: any, fallback?: number, stripTrailingNonDigits?: boolean): number;
     function convertToNumber2(n: any): number;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function logError(method: string, message: string): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function querySelector(selector: string, context?: NodeSelector): Element;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function createChildDivElement(parentDiv: HTMLDivElement, cssClass?: string): HTMLDivElement;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function createChildImageElement(parentDiv: HTMLDivElement, cssClass: string, src: string, width?: number, height?: number): HTMLImageElement;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function createStyleElement(id: string): HTMLStyleElement;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function createSvgElement(name: any, attrs: any, opt_parent: any): SVGElement;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function prefixCssStyleIfNeeded(cssStyle: string): string;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function encodeStyle(cssStyle: string, value: string): string;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function encodeStyles(cssStyles: any): string;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function encodeStyleSheet(styles: any): string;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function getElementText(element: HTMLElement): string;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function lowercaseProperties(json: any): any;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function getSetup(json: any, name: string): any;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function getSign(n: number): number;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function getGSTransform(div: HTMLElement): any;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function getStyleElement(styleId: string): HTMLStyleElement;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function insertIntoArray(array: any[], index: number, item: any): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function isAbsoluteUrl(url: string): boolean;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function logStepValues(flowIndex: number, pageIndex: number, itemIndex: number, stepIndex: number, values: any): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function logWarning(method: string, message: string): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function makeArray(a: any): any;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function querySelectorAll(selector: string, context?: NodeSelector): any;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function setElementText(element: HTMLElement, text: string): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function splitNoParens(s: string): string[];
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function svgAddClass(svgElement: SVGElement, className: string): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function svgGetBounds(svgElement: SVGElement): any;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function svgRemoveClass(svgElement: SVGElement, className: string): void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function throttle(fn: any, delay: any): () => void;
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     enum EazeEffect {
         Back = 0,
         Bounce = 1,
@@ -118,7 +118,7 @@ declare module Pro.Motion.Types {
         StopAndReturn = 12,
     }
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     enum EazeAmount {
         Less = 0,
         Normal = 1,
@@ -126,14 +126,14 @@ declare module Pro.Motion.Types {
         Extra = 3,
     }
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     enum EazeEnding {
         In = 0,
         Out = 1,
         InOut = 2,
     }
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     class Eaze {
         static DEFAULT_EFFECT: EazeEffect;
         static DEFAULT_AMOUNT: EazeAmount;
@@ -152,7 +152,7 @@ declare module Pro.Motion.Types {
         static getByText(text: string): Eaze;
     }
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     class Size {
         width: number;
         height: number;
@@ -165,7 +165,7 @@ declare module Pro.Motion.Types {
         getContainedSize(innerAspectRatio: number): Size;
     }
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     class Scale {
         x: number;
         y: any;
@@ -174,7 +174,7 @@ declare module Pro.Motion.Types {
         equals(other: Scale): boolean;
     }
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     class Xyz {
         x: number;
         y: number;
@@ -184,7 +184,7 @@ declare module Pro.Motion.Types {
         equals(other: Xyz): boolean;
     }
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     class Placement {
         position: Xyz;
         rotation: Xyz;
@@ -198,7 +198,7 @@ declare module Pro.Motion.Types {
         equals(other: Placement): boolean;
     }
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     class Shadow {
         x: number;
         y: number;
@@ -213,7 +213,7 @@ declare module Pro.Motion.Types {
         equals(other: Shadow): boolean;
     }
 }
-declare module Pro.Motion.Types {
+declare module ProStyle.Types {
     class Stacks {
         current: Placement;
         future: Placement;
@@ -224,24 +224,24 @@ declare module Pro.Motion.Types {
         static fromJson(json: any): Stacks;
     }
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
 }
-declare module Pro.Motion.Svg.fastForward {
+declare module ProStyle.Svg.fastForward {
     var svg: string;
 }
-declare module Pro.Motion.Svg.logo {
+declare module ProStyle.Svg.logo {
     var svg: string;
 }
-declare module Pro.Motion.Svg.pause {
+declare module ProStyle.Svg.pause {
     var svg: string;
 }
-declare module Pro.Motion.Svg.play {
+declare module ProStyle.Svg.play {
     var svg: string;
 }
-declare module Pro.Motion.Svg.toStart {
+declare module ProStyle.Svg.toStart {
     var svg: string;
 }
-declare module Pro.Motion.Config {
+declare module ProStyle.Config {
     interface IAutoConfig {
         start?: boolean;
         advance?: boolean;
@@ -250,12 +250,12 @@ declare module Pro.Motion.Config {
         resize?: boolean;
     }
 }
-declare module Pro.Motion.Config {
+declare module ProStyle.Config {
     interface IControlsConfig {
         type: string;
     }
 }
-declare module Pro.Motion.Config {
+declare module ProStyle.Config {
     interface IKeyboardConfig {
         play: number[];
         pause: number[];
@@ -266,11 +266,11 @@ declare module Pro.Motion.Config {
         end: number[];
     }
 }
-declare module Pro.Motion.Config {
+declare module ProStyle.Config {
     interface ITouchConfig {
     }
 }
-declare module Pro.Motion.Config {
+declare module ProStyle.Config {
     interface IConfig {
         auto?: IAutoConfig;
         controls?: IControlsConfig;
@@ -280,7 +280,7 @@ declare module Pro.Motion.Config {
         debugBar?: boolean;
     }
 }
-declare module Pro.Motion.Config {
+declare module ProStyle.Config {
     interface ITrackControlsConfig extends IControlsConfig {
         autoHide?: boolean;
         color?: string;
@@ -291,7 +291,7 @@ declare module Pro.Motion.Config {
         startHint?: boolean;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     interface IVariable {
         defaultValueOverride: any;
         type: IVariableType;
@@ -300,14 +300,14 @@ declare module Pro.Motion.Models.Properties.Variables {
         render(includeLabel: boolean, includeText: any): string;
     }
 }
-declare module Pro.Motion.Models {
+declare module ProStyle.Models {
     class Model {
         initPropertyLists: Properties.PropertyList[];
         init: Properties.PropertyList;
         constructor(initPropertyLists: Properties.PropertyList[]);
     }
 }
-declare module Pro.Motion.Stories {
+declare module ProStyle.Stories {
     var rootUrl: string;
     var Config: {
         "default": {
@@ -335,8 +335,8 @@ declare module Pro.Motion.Stories {
         };
     };
 }
-declare module Pro.Motion.Models {
-    import Types = Pro.Motion.Types;
+declare module ProStyle.Models {
+    import Types = ProStyle.Types;
     class Canvas extends Model {
         padding: number;
         imageRootUrl: string;
@@ -347,14 +347,14 @@ declare module Pro.Motion.Models {
         adjustImageUrl(url: string): string;
     }
 }
-declare module Pro.Motion.Models {
+declare module ProStyle.Models {
     class Frame extends Model {
         aspectRatio: number;
         padding: number;
         constructor(init: Properties.PropertyList, aspectRatio: number, padding: number);
     }
 }
-declare module Pro.Motion.Models {
+declare module ProStyle.Models {
     class Story {
         canvas: Canvas;
         frame: Frame;
@@ -363,7 +363,7 @@ declare module Pro.Motion.Models {
         constructor(canvas: Canvas, frame: Frame, flows: Flows.Flow[], classes: any);
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     interface IVariableType {
         label: string;
         text: string;
@@ -377,7 +377,7 @@ declare module Pro.Motion.Models.Properties.Variables {
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: any): any;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     interface IPropertyType {
         label: string;
         jsonNames: string[];
@@ -390,7 +390,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     interface IProperty {
         type: IPropertyType;
         getVariable(jsonName: string): Variables.IVariable;
@@ -398,7 +398,7 @@ declare module Pro.Motion.Models.Properties {
         writeCssBuckets(story: Story, model: Model, containerSize: Types.Size, buckets: any[], initializing?: boolean): any;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class PropertyList {
         propertyTypes: IPropertyType[];
         properties: IProperty[];
@@ -407,14 +407,14 @@ declare module Pro.Motion.Models.Properties {
         hasAnythingSet(): boolean;
     }
 }
-declare module Pro.Motion.Models {
+declare module ProStyle.Models {
     interface IItemSet {
         items: Items.Item[];
         flow: Flows.Flow;
         story: Story;
     }
 }
-declare module Pro.Motion.Models {
+declare module ProStyle.Models {
     class Page extends Model implements IItemSet {
         flow: Flows.Flow;
         steps: Step[];
@@ -429,7 +429,7 @@ declare module Pro.Motion.Models {
         deleteItem(index: number): void;
     }
 }
-declare module Pro.Motion.Models.Flows {
+declare module ProStyle.Models.Flows {
     class Flow {
         story: Story;
         flowType: string;
@@ -442,30 +442,30 @@ declare module Pro.Motion.Models.Flows {
         getDefaultPageClassValue(): any;
     }
 }
-declare module Pro.Motion.Models.Flows {
+declare module ProStyle.Models.Flows {
     class SimpleFlow extends Flow {
         constructor(story: Story, placement: Types.Placement, defaultPageClass: string, pageAspectRatio: number);
         getDefaultPageClassName(): string;
     }
 }
-declare module Pro.Motion.Extensions.Flows.unknown {
-    import Models = Pro.Motion.Models;
-    import Types = Pro.Motion.Types;
+declare module ProStyle.Extensions.Flows.unknown {
+    import Models = ProStyle.Models;
+    import Types = ProStyle.Types;
     class Extension extends Models.Flows.SimpleFlow {
         constructor(story: Models.Story, placement: Types.Placement, defaultPageClass: string, pageAspectRatio: number);
     }
 }
-declare module Pro.Motion.Render {
-    import Properties = Pro.Motion.Models.Properties;
+declare module ProStyle.Render {
+    import Properties = ProStyle.Models.Properties;
     interface AfterCssBuckets {
         (properties: Properties.IProperty[], buckets: any[], containerSize: Types.Size): void;
     }
 }
-declare module Pro.Motion.Render {
-    import Models = Pro.Motion.Models;
-    import Types = Pro.Motion.Types;
-    import Scripts = Pro.Motion.Models.Scripts;
-    import Properties = Pro.Motion.Models.Properties;
+declare module ProStyle.Render {
+    import Models = ProStyle.Models;
+    import Types = ProStyle.Types;
+    import Scripts = ProStyle.Models.Scripts;
+    import Properties = ProStyle.Models.Properties;
     class Visual {
         model: Models.Model;
         element: Element;
@@ -477,21 +477,21 @@ declare module Pro.Motion.Render {
         static postProcessCssBuckets(buckets: any[], afterCssBuckets: AfterCssBuckets, properties: Properties.IProperty[], containerSize: Types.Size): void;
     }
 }
-declare module Pro.Motion.Render.Flows {
+declare module ProStyle.Render.Flows {
     interface IFlow {
         pageElems: Page[];
         initializePlacement(timeline: TimelineMax): any;
         pageAspectRatio(): number;
     }
 }
-declare module Pro.Motion.Render {
+declare module ProStyle.Render {
     interface IItemSet {
         items: Items.Item[];
         div: HTMLDivElement;
     }
 }
-declare module Pro.Motion.Render.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render.Items {
+    import Models = ProStyle.Models;
     class Item extends Visual {
         private item;
         itemSetElem: IItemSet;
@@ -500,7 +500,7 @@ declare module Pro.Motion.Render.Items {
         generateStepActions(itemSet: IItemSet, pageSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string): void;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class Property implements IProperty {
         type: IPropertyType;
         constructor(type: IPropertyType);
@@ -509,7 +509,7 @@ declare module Pro.Motion.Models.Properties {
         writeCssBuckets(story: Story, model: Model, containerSize: Types.Size, buckets: any[], initializing?: boolean): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class VariableType<T> implements IVariableType {
         label: string;
         jsonNames: string[];
@@ -524,19 +524,19 @@ declare module Pro.Motion.Models.Properties.Variables {
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: T): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class StringVariableType extends VariableType<string> {
         constructor(label: string, jsonNames: string[], cssName: string, defaultValue: string, alwaysInitializeCss: boolean);
         scrubValue(value: any): string;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class BackgroundImageVariableType extends StringVariableType {
         constructor(label: string, jsonNames: string[], cssName: string, defaultValue: string, alwaysInitializeCss: boolean);
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: string): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class BooleanVariableType extends VariableType<boolean> {
         private falseValue;
         private trueValue;
@@ -545,7 +545,7 @@ declare module Pro.Motion.Models.Properties.Variables {
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: boolean): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class EnumVariableType extends StringVariableType {
         private enumValues;
         constructor(label: string, jsonNames: string[], cssName: string, defaultValue: string, enumValues: string[], alwaysInitializeCss: boolean);
@@ -553,19 +553,19 @@ declare module Pro.Motion.Models.Properties.Variables {
         getValueByIndex(index: number): string;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class BulletsVariableType extends EnumVariableType {
         constructor();
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: string): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class ColorVariableType extends StringVariableType {
         constructor(label: string, jsonNames: string[], cssName: string, defaultValue: string, alwaysInitializeCss: boolean);
         scrubValue(value: any): string;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class NumberVariableType extends VariableType<number> {
         private _minValue;
         private _maxNumber;
@@ -574,33 +574,33 @@ declare module Pro.Motion.Models.Properties.Variables {
         scrubValue(value: any): number;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class ContainerDepthPctVariableType extends NumberVariableType {
         constructor(label: string, jsonNames: string[], cssName: string, minValue: number, maxValue: number, defaultValue: number, decimalPlaces: number, text: string, alwaysInitializeCss: boolean);
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: number): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class ContainerHeightPctVariableType extends NumberVariableType {
         constructor(label: string, jsonNames: string[], cssName: string, minValue: number, maxValue: number, defaultValue: number, decimalPlaces: number, text: string, alwaysInitializeCss: boolean);
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: number): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class ContainerWidthPctVariableType extends NumberVariableType {
         constructor(label: string, jsonNames: string[], cssName: string, minValue: number, maxValue: number, defaultValue: number, decimalPlaces: number, text: string, alwaysInitializeCss: boolean);
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: number): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
-    import Types = Pro.Motion.Types;
+declare module ProStyle.Models.Properties.Variables {
+    import Types = ProStyle.Types;
     class EaseVariableType extends VariableType<Types.Eaze> {
         constructor();
         scrubValue(value: any): Types.Eaze;
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: Types.Eaze): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class NumberOffsetVariableType extends NumberVariableType {
         private inverted;
         offset: number;
@@ -608,8 +608,8 @@ declare module Pro.Motion.Models.Properties.Variables {
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: number): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
-    import Types = Pro.Motion.Types;
+declare module ProStyle.Models.Properties.Variables {
+    import Types = ProStyle.Types;
     class OriginVariableType extends VariableType<Types.Xyz> {
         private transform;
         private useContainer;
@@ -620,13 +620,13 @@ declare module Pro.Motion.Models.Properties.Variables {
         writeCssBuckets(story: Story, model: Model, containerSize: Types.Size, variable: IVariable, buckets: any[], initializing: boolean): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class PercentVariableType extends NumberVariableType {
         constructor(label: string, jsonNames: string[], cssName: string, minValue: number, maxValue: number, defaultValue: number, alwaysInitializeCss: boolean);
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: number): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class ShadowVariableType extends VariableType<Types.Shadow[]> {
         private isBoxShadow;
         constructor(cssName: string, isBoxShadow: any);
@@ -634,18 +634,18 @@ declare module Pro.Motion.Models.Properties.Variables {
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, shadows: Types.Shadow[]): void;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class TextAlignVariableType extends EnumVariableType {
         constructor();
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class TextWidthVariableType extends NumberVariableType {
         constructor();
         writeCssBucket(story: Story, model: Model, containerSize: Types.Size, bucket: any, value: number): void;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class PropertyType implements IPropertyType {
         label: string;
         jsonNames: string[];
@@ -661,7 +661,7 @@ declare module Pro.Motion.Models.Properties {
         renderVariables(property: IProperty, includeLabel: boolean, includeText: boolean): string;
     }
 }
-declare module Pro.Motion.Models.Items {
+declare module ProStyle.Models.Items {
     class Item extends Model {
         itemSet: IItemSet;
         itemType: string;
@@ -673,8 +673,8 @@ declare module Pro.Motion.Models.Items {
         getCountOfStepsUsed(): number;
     }
 }
-declare module Pro.Motion.Render.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render.Items {
+    import Models = ProStyle.Models;
     class SequencedItem extends Item {
         sequencedItem: Models.Items.SequencedItem;
         constructor(sequencedItem: Models.Items.SequencedItem, itemSetElem: IItemSet);
@@ -682,7 +682,7 @@ declare module Pro.Motion.Render.Items {
         getCountOfSubSteps(): number;
     }
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     class Script {
         scriptSet: ScriptSet;
         type: ScriptType;
@@ -691,7 +691,7 @@ declare module Pro.Motion.Models.Scripts {
         constructor(scriptSet: ScriptSet, type: ScriptType);
     }
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     class ScriptSet {
         itemSet: IItemSet;
         name: string;
@@ -703,27 +703,27 @@ declare module Pro.Motion.Models.Scripts {
         deleteStep(index: number): void;
     }
 }
-declare module Pro.Motion.Extensions.Items.unknown {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Extensions.Items.unknown {
+    import Models = ProStyle.Models;
     import Items = Models.Items;
     class Extension extends Items.Item {
         unknownType: string;
         constructor(itemSet: Models.IItemSet, unknownType: string);
     }
 }
-declare module Pro.Motion.Extensions.Items.unknown {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Extensions.Items.unknown {
+    import Models = ProStyle.Models;
     function readJson(itemSet: Models.IItemSet, json: any): Models.Items.Item;
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
     class ItemReader {
         static read(itemSet: Models.IItemSet, json: any): Models.Items.Item;
         static lookupExtension(itemType: string): any;
     }
 }
-declare module Pro.Motion.Render {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render {
+    import Models = ProStyle.Models;
     class Page extends Visual implements IItemSet {
         page: Models.Page;
         flowElem: Flows.Flow;
@@ -736,8 +736,8 @@ declare module Pro.Motion.Render {
         generateStepsActions(timeline: TimelineMax, priorStep: Render.Step): Render.Step;
     }
 }
-declare module Pro.Motion.Render.Flows {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render.Flows {
+    import Models = ProStyle.Models;
     class Flow extends Visual implements IFlow {
         private flow;
         cameraElem: Camera;
@@ -754,8 +754,8 @@ declare module Pro.Motion.Render.Flows {
         pageAspectRatio(): number;
     }
 }
-declare module Pro.Motion.Render.Flows {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render.Flows {
+    import Models = ProStyle.Models;
     class SimpleFlow extends Flow {
         private simpleFlow;
         constructor(simpleFlow: Models.Flows.SimpleFlow, cameraElem: Camera, flowIndex: number);
@@ -764,41 +764,41 @@ declare module Pro.Motion.Render.Flows {
         private applyCss(timeline, div, label, duration, css, ease);
     }
 }
-declare module Pro.Motion.Extensions.Flows.unknown {
-    import Render = Pro.Motion.Render;
+declare module ProStyle.Extensions.Flows.unknown {
+    import Render = ProStyle.Render;
     class Renderer extends Render.Flows.SimpleFlow {
         constructor(unknownFlow: Extension, cameraElem: Render.Camera, flowIndex: number);
     }
 }
-declare module Pro.Motion.Extensions.Flows.unknown {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Extensions.Flows.unknown {
+    import Models = ProStyle.Models;
     function readJson(story: Models.Story, json: any): Models.Flows.Flow;
 }
-declare module Pro.Motion.Extensions.Items.unknown {
-    import Items = Pro.Motion.Render.Items;
+declare module ProStyle.Extensions.Items.unknown {
+    import Items = ProStyle.Render.Items;
     class Renderer extends Items.Item {
         private unknownItem;
         private divs;
-        constructor(unknownItem: Extension, itemSetElem: Pro.Motion.Render.IItemSet);
+        constructor(unknownItem: Extension, itemSetElem: ProStyle.Render.IItemSet);
     }
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     class ActionsScript extends Script {
         actions: Actions.Action[];
         constructor(scriptSet: ScriptSet, type: ScriptType);
         removeAction(action: Actions.Action): void;
     }
 }
-declare module Pro.Motion.Models.Actions {
+declare module ProStyle.Models.Actions {
     enum ActionType {
         SetProperties = 0,
     }
 }
-declare module Pro.Motion.Models.Actions.ActionType {
+declare module ProStyle.Models.Actions.ActionType {
     function fromString(value: string): ActionType;
     function toString(value: ActionType): string;
 }
-declare module Pro.Motion.Models.Actions {
+declare module ProStyle.Models.Actions {
     class Action {
         script: Scripts.ActionsScript;
         actionType: ActionType;
@@ -807,18 +807,18 @@ declare module Pro.Motion.Models.Actions {
         saveJson(): any;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     interface IPropertySet {
         properties: IProperty[];
     }
 }
-declare module Pro.Motion.Models.Actions {
+declare module ProStyle.Models.Actions {
     class SetPropertiesAction extends Action implements Properties.IPropertySet {
         properties: Properties.IProperty[];
         constructor(script: Scripts.ActionsScript, delay: number, properties: Properties.IProperty[]);
     }
 }
-declare module Pro.Motion.Models.Flows {
+declare module ProStyle.Models.Flows {
     class PlacementFlow extends Flow {
         private defaultPageClassIfNotGiven;
         constructor(story: Story, flowType: string, placement: Types.Placement, defaultPageClass: string, pageAspectRatio: number, defaultPageClassIfNotGiven: string);
@@ -826,7 +826,7 @@ declare module Pro.Motion.Models.Flows {
         getDefaultPageClassValue(): any;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class AnchorPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -837,7 +837,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class AnimationPropertyType extends PropertyType {
         constructor(initializeFontSize?: boolean);
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -847,7 +847,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class BackgroundPropertyType extends PropertyType {
         constructor(backgroundColor?: string);
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -857,7 +857,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class BorderPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -867,7 +867,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class BulletsPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -877,7 +877,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class ClassPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -886,7 +886,7 @@ declare module Pro.Motion.Models.Properties {
         createPropertyFromArray(json: any[]): IProperty;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class ColorPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -896,7 +896,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class CornersPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -906,7 +906,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class CropPropertyType extends PropertyType {
         constructor(isSvg?: boolean);
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -916,7 +916,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class FontPropertyType extends PropertyType {
         constructor(initializeFontSize?: boolean);
         createPropertyFromNumber(json: number): IProperty;
@@ -925,7 +925,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class MoveToPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -934,7 +934,7 @@ declare module Pro.Motion.Models.Properties {
         createPropertyFromArray(json: any[]): IProperty;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class OpacityPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -944,7 +944,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class PaddingPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -954,7 +954,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class PositionPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -964,7 +964,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class RotationPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -974,7 +974,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class ScalePropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -984,7 +984,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class SizePropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -994,7 +994,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class SkewPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -1004,7 +1004,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class ShadowPropertyType extends PropertyType {
         constructor(label?: string, jsonNames?: string[], cssName?: string);
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -1017,7 +1017,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class SvgFillPropertyType extends PropertyType {
         constructor(backgroundColor?: string);
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -1026,7 +1026,7 @@ declare module Pro.Motion.Models.Properties {
         createPropertyFromArray(json: any[]): IProperty;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class TextAlignPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -1036,12 +1036,12 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class TextShadowPropertyType extends ShadowPropertyType {
         constructor();
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class TextStylePropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -1051,7 +1051,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class TextWidthPropertyType extends PropertyType {
         constructor();
         createPropertyFromBoolean(json: boolean): IProperty;
@@ -1061,7 +1061,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class TransformOriginPropertyType extends PropertyType {
         constructor(useContainer: boolean);
         private createProperty(json);
@@ -1072,7 +1072,7 @@ declare module Pro.Motion.Models.Properties {
         renderLabel(property: IProperty): string;
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class Cache {
         static ANCHOR: AnchorPropertyType;
         static ANIMATION: AnimationPropertyType;
@@ -1103,7 +1103,7 @@ declare module Pro.Motion.Models.Properties {
         static TRANSFORM_ORIGIN_CONTAINER: TransformOriginPropertyType;
     }
 }
-declare module Pro.Motion.Models.Items {
+declare module ProStyle.Models.Items {
     class ImageItem extends Item {
         src: string;
         width: number;
@@ -1111,21 +1111,22 @@ declare module Pro.Motion.Models.Items {
         constructor(itemSet: IItemSet, src: string, width: number, height: number, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet);
     }
 }
-declare module Pro.Motion.Models.Items {
+declare module ProStyle.Models.Items {
     class LayerItem extends Item implements IItemSet {
         items: Items.Item[];
         flow: Flows.Flow;
         story: Models.Story;
         constructor(itemSet: IItemSet, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet);
+        getCountOfStepsUsed(): number;
     }
 }
-declare module Pro.Motion.Models.Items {
+declare module ProStyle.Models.Items {
     class SequencedItem extends Item {
         sequenceOnStepIndex: number;
         constructor(itemSet: IItemSet, itemType: string, typeLabel: string, sequenceOnStepIndex: number, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet);
     }
 }
-declare module Pro.Motion.Models.Items {
+declare module ProStyle.Models.Items {
     class TextItem extends Item {
         text: string;
         stackedLines: boolean;
@@ -1140,37 +1141,37 @@ declare module Pro.Motion.Models.Items {
         constructor(itemSet: IItemSet, text: string, stackedLines: boolean, stackedWords: boolean, stackedChars: boolean, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet, linesInit: Properties.PropertyList, linesScriptSet: Scripts.ScriptSet, wordsInit: Properties.PropertyList, wordsScriptSet: Scripts.ScriptSet, charsInit: Properties.PropertyList, charsScriptSet: Scripts.ScriptSet);
     }
 }
-declare module Pro.Motion.Models.Properties.PerElement {
+declare module ProStyle.Models.Properties.PerElement {
     class Canvas {
         private static _propertyTypes;
         static getPropertyTypes(): Properties.IPropertyType[];
     }
 }
-declare module Pro.Motion.Models.Properties.PerElement {
+declare module ProStyle.Models.Properties.PerElement {
     class Frame {
         private static _propertyTypes;
         static getPropertyTypes(): Properties.IPropertyType[];
     }
 }
-declare module Pro.Motion.Models.Properties.PerElement {
+declare module ProStyle.Models.Properties.PerElement {
     class ImageItem {
         private static _propertyTypes;
         static getPropertyTypes(): Properties.IPropertyType[];
     }
 }
-declare module Pro.Motion.Models.Properties.PerElement {
+declare module ProStyle.Models.Properties.PerElement {
     class LayerItem {
         private static _propertyTypes;
         static getPropertyTypes(): Properties.IPropertyType[];
     }
 }
-declare module Pro.Motion.Models.Properties.PerElement {
+declare module ProStyle.Models.Properties.PerElement {
     class Page {
         private static _propertyTypes;
         static getPropertyTypes(): Properties.IPropertyType[];
     }
 }
-declare module Pro.Motion.Models.Properties.PerElement {
+declare module ProStyle.Models.Properties.PerElement {
     class TextItem {
         private static _propertyTypes;
         private static _linePropertyTypes;
@@ -1184,7 +1185,7 @@ declare module Pro.Motion.Models.Properties.PerElement {
         static getCharPropertyTypes(): Properties.IPropertyType[];
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     enum StaggerTargets {
         All = 0,
         Odd = 1,
@@ -1194,14 +1195,14 @@ declare module Pro.Motion.Models.Properties {
         Thirds3 = 5,
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     enum StaggerOrder {
         Forward = 0,
         Reverse = 1,
         Random = 2,
     }
 }
-declare module Pro.Motion.Models.Properties {
+declare module ProStyle.Models.Properties {
     class Stagger {
         delay: number;
         targets: StaggerTargets;
@@ -1213,7 +1214,7 @@ declare module Pro.Motion.Models.Properties {
         isDefault(): boolean;
     }
 }
-declare module Pro.Motion.Models.Properties.Variables {
+declare module ProStyle.Models.Properties.Variables {
     class Variable<T> implements IVariable {
         type: IVariableType;
         private _value;
@@ -1224,7 +1225,7 @@ declare module Pro.Motion.Models.Properties.Variables {
         render(includeLabel: boolean, includeText: any): string;
     }
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     enum ScriptType {
         InitEvent = 0,
         StepEvent = 1,
@@ -1233,48 +1234,48 @@ declare module Pro.Motion.Models.Scripts {
         PropertyOrphan = 4,
     }
 }
-declare module Pro.Motion.Models.Scripts.ScriptType {
+declare module ProStyle.Models.Scripts.ScriptType {
     function fromString(value: string): ScriptType;
     function toString(value: ScriptType): string;
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     class ActionsOrphan extends ActionsScript {
         scriptSet: ScriptSet;
         actions: Actions.Action[];
         constructor(scriptSet: ScriptSet);
     }
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     class PropertiesScript extends Script implements Properties.IPropertySet {
         properties: Properties.IProperty[];
         constructor(scriptSet: ScriptSet, type: ScriptType);
     }
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     class InitEvent extends PropertiesScript {
         scriptSet: ScriptSet;
         constructor(scriptSet: ScriptSet);
     }
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     class PropertyOrphan extends PropertiesScript {
         scriptSet: ScriptSet;
         constructor(scriptSet: ScriptSet);
     }
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     class StepEvent extends ActionsScript {
         stepIndex: number;
         constructor(scriptSet: ScriptSet, stepIndex: number);
     }
 }
-declare module Pro.Motion.Models.Scripts {
+declare module ProStyle.Models.Scripts {
     class SwitchEvent extends ActionsScript {
         switchName: string;
         constructor(scriptSet: ScriptSet, switchName: string);
     }
 }
-declare module Pro.Motion.Models {
+declare module ProStyle.Models {
     class Step {
         autoAdvanceDelay: number;
         startLabel: string;
@@ -1283,15 +1284,15 @@ declare module Pro.Motion.Models {
         constructor(autoAdvanceDelay?: number);
     }
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
     class FlowReader {
         static read(story: Models.Story, json: any): Models.Flows.Flow;
         static lookupExtension(itemType: string): any;
     }
 }
-declare module Pro.Motion.Render {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render {
+    import Models = ProStyle.Models;
     class Camera extends Visual {
         story: Models.Story;
         frameElem: Frame;
@@ -1302,8 +1303,8 @@ declare module Pro.Motion.Render {
         stepStopped(timeline: TimelineMax, step: Step): void;
     }
 }
-declare module Pro.Motion.Render {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render {
+    import Models = ProStyle.Models;
     class Frame extends Visual {
         story: Models.Story;
         canvasElem: Canvas;
@@ -1314,7 +1315,7 @@ declare module Pro.Motion.Render {
         resize(): void;
     }
 }
-declare module Pro.Motion.Util.Events {
+declare module ProStyle.Util.Events {
     interface ILiteEvent<T> {
         on(handler: {
             (data?: T): void;
@@ -1324,7 +1325,7 @@ declare module Pro.Motion.Util.Events {
         }): any;
     }
 }
-declare module Pro.Motion.Util.Events {
+declare module ProStyle.Util.Events {
     class LiteEvent<T> implements ILiteEvent<T> {
         private handlers;
         on(handler: {
@@ -1337,8 +1338,8 @@ declare module Pro.Motion.Util.Events {
         dispose(): void;
     }
 }
-declare module Pro.Motion.Play {
-    import Render = Pro.Motion.Render;
+declare module ProStyle.Play {
+    import Render = ProStyle.Render;
     interface IPlayerProgress {
         progress: number;
         time: number;
@@ -1346,9 +1347,9 @@ declare module Pro.Motion.Play {
         subStep: number;
     }
 }
-declare module Pro.Motion.Play {
-    import Events = Pro.Motion.Util.Events;
-    import Render = Pro.Motion.Render;
+declare module ProStyle.Play {
+    import Events = ProStyle.Util.Events;
+    import Render = ProStyle.Render;
     interface IPlayer {
         timeline: TimelineMax;
         steps: Render.Step[];
@@ -1369,9 +1370,9 @@ declare module Pro.Motion.Play {
         pause(): any;
     }
 }
-declare module Pro.Motion.Play {
-    import Events = Pro.Motion.Util.Events;
-    import Render = Pro.Motion.Render;
+declare module ProStyle.Play {
+    import Events = ProStyle.Util.Events;
+    import Render = ProStyle.Render;
     class Player {
         frame: Render.Frame;
         timeline: TimelineMax;
@@ -1412,15 +1413,15 @@ declare module Pro.Motion.Play {
         pause(): void;
     }
 }
-declare module Pro.Motion.Play {
-    import Render = Pro.Motion.Render;
-    import Config = Pro.Motion.Config;
+declare module ProStyle.Play {
+    import Render = ProStyle.Render;
+    import Config = ProStyle.Config;
     class Controls {
         resize(): void;
         static byConfig(canvasElem: Render.Canvas, config: Config.IControlsConfig): Controls;
     }
 }
-declare module Pro.Motion.Render {
+declare module ProStyle.Render {
     class Canvas extends Visual {
         private story;
         frameElem: Render.Frame;
@@ -1440,9 +1441,9 @@ declare module Pro.Motion.Render {
         private showDebugBar();
     }
 }
-declare module Pro.Motion.Play {
-    import Render = Pro.Motion.Render;
-    import Config = Pro.Motion.Config;
+declare module ProStyle.Play {
+    import Render = ProStyle.Render;
+    import Config = ProStyle.Config;
     class AutoPlay {
         private canvasElem;
         private config;
@@ -1452,9 +1453,9 @@ declare module Pro.Motion.Play {
         pause(): void;
     }
 }
-declare module Pro.Motion.Play {
-    import Render = Pro.Motion.Render;
-    import Config = Pro.Motion.Config;
+declare module ProStyle.Play {
+    import Render = ProStyle.Render;
+    import Config = ProStyle.Config;
     class KeyboardPlay {
         private canvasElem;
         private config;
@@ -1472,9 +1473,9 @@ declare module Pro.Motion.Play {
         private end();
     }
 }
-declare module Pro.Motion.Play {
-    import Render = Pro.Motion.Render;
-    import Config = Pro.Motion.Config;
+declare module ProStyle.Play {
+    import Render = ProStyle.Render;
+    import Config = ProStyle.Config;
     class TrackControls extends Controls {
         private canvasElem;
         private config;
@@ -1520,30 +1521,30 @@ declare module Pro.Motion.Play {
         private addButton(tooltip, svg, clickEvent);
     }
 }
-declare module Pro.Motion.Render.Actions {
-    import Actions = Pro.Motion.Models.Actions;
+declare module ProStyle.Render.Actions {
+    import Actions = ProStyle.Models.Actions;
     class SetPropertiesAction {
         static generateTimeline(itemSet: IItemSet, visual: Visual, divs: Element[], action: Actions.SetPropertiesAction, timeline: TimelineMax, containerSize: Types.Size, afterCssBuckets?: AfterCssBuckets): number;
         private static getMoveTo(properties, items);
         static generateMoveTo(div: HTMLDivElement, targetDiv: HTMLDivElement, timeline: TimelineMax): void;
     }
 }
-declare module Pro.Motion.Render.Flows {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render.Flows {
+    import Models = ProStyle.Models;
     class PlacementFlow extends Flow {
         constructor(flow: Models.Flows.Flow, cameraElem: Camera, flowIndex: number);
     }
 }
-declare module Pro.Motion.Render.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render.Items {
+    import Models = ProStyle.Models;
     class ImageItem extends Item {
         private imageItem;
         constructor(imageItem: Models.Items.ImageItem, itemSetElem: IItemSet);
         initializeItem(timeline: TimelineMax, cameraSize: Types.Size): void;
     }
 }
-declare module Pro.Motion.Render.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render.Items {
+    import Models = ProStyle.Models;
     class LayerItem extends Item implements IItemSet {
         private layerItem;
         items: Items.Item[];
@@ -1552,8 +1553,8 @@ declare module Pro.Motion.Render.Items {
         generateStepActions(itemSet: IItemSet, pageSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string): void;
     }
 }
-declare module Pro.Motion.Render.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render.Items {
+    import Models = ProStyle.Models;
     class TextItem extends Item {
         private textItem;
         splitText: any;
@@ -1565,8 +1566,8 @@ declare module Pro.Motion.Render.Items {
         generateStepActions(itemSet: IItemSet, pageSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string): void;
     }
 }
-declare module Pro.Motion.Render {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Render {
+    import Models = ProStyle.Models;
     class Step {
         step: Models.Step;
         flowIndex: number;
@@ -1586,111 +1587,111 @@ declare module Pro.Motion.Render {
         getSubStepCount(): number;
     }
 }
-declare module Pro.Motion.Render {
+declare module ProStyle.Render {
     class Timeline {
         timeline: TimelineMax;
         constructor(frameElem: Render.Frame, positionChanged: () => void);
         private generateTimeline(frameElem, positionChanged);
     }
 }
-declare module Pro.Motion.Serialization {
-    import Actions = Pro.Motion.Models.Actions;
-    import Scripts = Pro.Motion.Models.Scripts;
+declare module ProStyle.Serialization {
+    import Actions = ProStyle.Models.Actions;
+    import Scripts = ProStyle.Models.Scripts;
     class ActionReader {
         static readArray(script: Scripts.ActionsScript, json: any): Actions.Action[];
         static read(script: Scripts.ActionsScript, json: any): Actions.Action;
         private static readPropertiesAction(script, json);
     }
 }
-declare module Pro.Motion.Serialization {
-    import Actions = Pro.Motion.Models.Actions;
+declare module ProStyle.Serialization {
+    import Actions = ProStyle.Models.Actions;
     class ActionWriter {
         static writeArray(actions: Actions.Action[]): any[];
         static write(action: Actions.Action): any;
         private static writePropertiesAction(action);
     }
 }
-declare module Pro.Motion.Serialization {
-    import Properties = Pro.Motion.Models.Properties;
+declare module ProStyle.Serialization {
+    import Properties = ProStyle.Models.Properties;
     class PropertyReader {
         static read(type: Properties.IPropertyType, json: any): Properties.IProperty;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
-    import Properties = Pro.Motion.Models.Properties;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
+    import Properties = ProStyle.Models.Properties;
     class PropertyListReader {
         static read(story: Models.Story, json: any, propertyTypes: Properties.IPropertyType[], className?: string, classValue?: any, priorClasses?: string[]): Properties.PropertyList;
     }
 }
-declare module Pro.Motion.Serialization {
+declare module ProStyle.Serialization {
     class CanvasReader {
         static read(json: any): Models.Canvas;
     }
 }
-declare module Pro.Motion.Serialization {
+declare module ProStyle.Serialization {
     class CanvasWriter {
         static write(canvas: Models.Canvas): any;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
     class FlowWriter {
         static write(flow: Models.Flows.Flow): any;
     }
 }
-declare module Pro.Motion.Serialization.Flows {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization.Flows {
+    import Models = ProStyle.Models;
     function read_simple(story: Models.Story, json: any): Models.Flows.Flow;
 }
-declare module Pro.Motion.Serialization.Flows {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization.Flows {
+    import Models = ProStyle.Models;
     function write_simple(flow: Models.Flows.SimpleFlow, json: any): void;
 }
-declare module Pro.Motion.Serialization {
+declare module ProStyle.Serialization {
     class FrameReader {
         static DEFAULT_ASPECT_RATIO: number;
         static read(json: any): Models.Frame;
     }
 }
-declare module Pro.Motion.Serialization {
+declare module ProStyle.Serialization {
     class FrameWriter {
         static write(frame: Models.Frame): any;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
     class ItemWriter {
         static write(item: Models.Items.Item): any;
     }
 }
-declare module Pro.Motion.Serialization.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization.Items {
+    import Models = ProStyle.Models;
     function read_image(itemSet: Models.IItemSet, json: any): Models.Items.Item;
 }
-declare module Pro.Motion.Serialization.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization.Items {
+    import Models = ProStyle.Models;
     function read_layer(itemSet: Models.IItemSet, json: any): Models.Items.Item;
 }
-declare module Pro.Motion.Serialization.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization.Items {
+    import Models = ProStyle.Models;
     function read_text(itemSet: Models.IItemSet, json: any): Models.Items.Item;
 }
-declare module Pro.Motion.Serialization {
-    import Properties = Pro.Motion.Models.Properties;
+declare module ProStyle.Serialization {
+    import Properties = ProStyle.Models.Properties;
     class PropertyWriter {
         static writeSet(json: any, properties: Properties.IProperty[]): void;
         static write(property: Properties.IProperty): any;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Properties = Pro.Motion.Models.Properties;
+declare module ProStyle.Serialization {
+    import Properties = ProStyle.Models.Properties;
     class PropertyListWriter {
         static write(propertyList: Properties.PropertyList): any;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Scripts = Pro.Motion.Models.Scripts;
+declare module ProStyle.Serialization {
+    import Scripts = ProStyle.Models.Scripts;
     class ScriptWriter {
         static write(script: Scripts.Script): any;
         private static writeInitEvent(script);
@@ -1700,37 +1701,37 @@ declare module Pro.Motion.Serialization {
         private static writePropertyOrphan(script);
     }
 }
-declare module Pro.Motion.Serialization.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization.Items {
+    import Models = ProStyle.Models;
     function write_image(item: Models.Items.ImageItem, json: any): void;
 }
-declare module Pro.Motion.Serialization.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization.Items {
+    import Models = ProStyle.Models;
     function write_layer(item: Models.Items.LayerItem, json: any): void;
 }
-declare module Pro.Motion.Serialization.Items {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization.Items {
+    import Models = ProStyle.Models;
     function write_text(item: Models.Items.TextItem, json: any): void;
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
-    import Flows = Pro.Motion.Models.Flows;
-    import Items = Pro.Motion.Models.Items;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
+    import Flows = ProStyle.Models.Flows;
+    import Items = ProStyle.Models.Items;
     class PageReader {
         static read(flow: Flows.Flow, json: any): Models.Page;
         private static readSteps(page, json, items);
         static readItems(itemSet: Models.IItemSet, json: any): Items.Item[];
     }
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
     class PageWriter {
         static write(page: Models.Page): any;
         static writeItems(itemSet: Models.IItemSet, json: any): void;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Scripts = Pro.Motion.Models.Scripts;
+declare module ProStyle.Serialization {
+    import Scripts = ProStyle.Models.Scripts;
     class ScriptReader {
         static read(scriptSet: Scripts.ScriptSet, json: any): Scripts.Script;
         private static readInitEvent(scriptSet, json);
@@ -1740,61 +1741,61 @@ declare module Pro.Motion.Serialization {
         private static readPropertyOrphan(scriptSet, json);
     }
 }
-declare module Pro.Motion.Serialization {
-    import Scripts = Pro.Motion.Models.Scripts;
-    import Properties = Pro.Motion.Models.Properties;
+declare module ProStyle.Serialization {
+    import Scripts = ProStyle.Models.Scripts;
+    import Properties = ProStyle.Models.Properties;
     class ScriptSetReader {
         private static read(itemSet, name, json, propertyTypes);
         static readJson(itemSet: Models.IItemSet, name: string, json: any, labels: string[], propertyTypes: Properties.IPropertyType[]): Scripts.ScriptSet;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Scripts = Pro.Motion.Models.Scripts;
+declare module ProStyle.Serialization {
+    import Scripts = ProStyle.Models.Scripts;
     class ScriptSetWriter {
         static write(scriptSet: Scripts.ScriptSet): any;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Properties = Pro.Motion.Models.Properties;
+declare module ProStyle.Serialization {
+    import Properties = ProStyle.Models.Properties;
     class StaggerReader {
         static read(json: any): Properties.Stagger;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Properties = Pro.Motion.Models.Properties;
+declare module ProStyle.Serialization {
+    import Properties = ProStyle.Models.Properties;
     class StaggerWriter {
         static write(stagger: Properties.Stagger): number[];
     }
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
     class StepReader {
         static read(page: Models.Page, json: any): Models.Step;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
     class StepWriter {
         static write(step: Models.Step): any;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
     class StoryReader {
         static read(json: any): Models.Story;
     }
 }
-declare module Pro.Motion.Serialization {
-    import Models = Pro.Motion.Models;
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
     class StoryWriter {
         static write(story: Models.Story): any;
         static stringify(story: Models.Story): string;
     }
 }
-declare module Pro.Motion.Util {
+declare module ProStyle.Util {
     function createChildSvgElement(parent: Element, tag: string, attrs?: any): SVGElement;
 }
-declare module Pro.Motion {
+declare module ProStyle {
     function reload(): void;
     function bootstrap(): void;
 }

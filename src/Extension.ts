@@ -1,14 +1,14 @@
-/// <reference path="../ts/pro.motion.d.ts" />
+/// <reference path="../ts/prostyle.d.ts" />
 
-module Pro.Motion.Extensions.Items.simpleBarChart {
+module ProStyle.Extensions.Items.simpleBarChart {
 
-    import Models = Pro.Motion.Models;
+    import Models = ProStyle.Models;
     import Properties = Models.Properties;
     import Scripts = Models.Scripts;
 
     export class Extension extends Models.Items.Item {
 
-        constructor(itemSet: Pro.Motion.Models.IItemSet,
+        constructor(itemSet: ProStyle.Models.IItemSet,
                     public bars: number,
                     public width: number,
                     public height: number,
