@@ -1,4 +1,44 @@
 /// <reference path="greensock.d.ts" />
+declare module ProStyle.Svg.fastForward {
+    var svg: string;
+}
+declare module ProStyle.Svg.logo {
+    var svg: string;
+}
+declare module ProStyle.Svg.pause {
+    var svg: string;
+}
+declare module ProStyle.Svg.play {
+    var svg: string;
+}
+declare module ProStyle.Svg.toStart {
+    var svg: string;
+}
+declare module ProStyle.Svg {
+}
+declare module ProStyle.Util.Events {
+    interface ILiteEvent<T> {
+        on(handler: {
+            (data?: T): void;
+        }): any;
+        off(handler: {
+            (data?: T): void;
+        }): any;
+    }
+}
+declare module ProStyle.Util.Events {
+    class LiteEvent<T> implements ILiteEvent<T> {
+        private handlers;
+        on(handler: {
+            (data?: T): void;
+        }): void;
+        off(handler: {
+            (data?: T): void;
+        }): void;
+        trigger(data?: T): void;
+        dispose(): void;
+    }
+}
 declare module ProStyle.Util {
     function autoButton(btn: any, action: any, start?: number, speedup?: number): void;
 }
@@ -224,81 +264,7 @@ declare module ProStyle.Types {
         static fromJson(json: any): Stacks;
     }
 }
-declare module ProStyle.Util {
-}
-declare module ProStyle.Svg.fastForward {
-    var svg: string;
-}
-declare module ProStyle.Svg.logo {
-    var svg: string;
-}
-declare module ProStyle.Svg.pause {
-    var svg: string;
-}
-declare module ProStyle.Svg.play {
-    var svg: string;
-}
-declare module ProStyle.Svg.toStart {
-    var svg: string;
-}
-declare module ProStyle.Config {
-    interface IAutoConfig {
-        start?: boolean;
-        advance?: boolean;
-        advanceDelay?: number;
-        restart?: boolean;
-        resize?: boolean;
-    }
-}
-declare module ProStyle.Config {
-    interface IControlsConfig {
-        type: string;
-    }
-}
-declare module ProStyle.Config {
-    interface IKeyboardConfig {
-        play: number[];
-        pause: number[];
-        togglePlay: number[];
-        back: number[];
-        playNext: number[];
-        start: number[];
-        end: number[];
-    }
-}
-declare module ProStyle.Config {
-    interface ITouchConfig {
-    }
-}
-declare module ProStyle.Config {
-    interface IConfig {
-        auto?: IAutoConfig;
-        controls?: IControlsConfig;
-        keyboard?: IKeyboardConfig;
-        touch?: ITouchConfig;
-        mouseWheel?: boolean;
-        debugBar?: boolean;
-    }
-}
-declare module ProStyle.Config {
-    interface ITrackControlsConfig extends IControlsConfig {
-        autoHide?: boolean;
-        color?: string;
-        highlightColor?: string;
-        backColor?: string;
-        stepColor1?: string;
-        stepColor2?: string;
-        startHint?: boolean;
-    }
-}
-declare module ProStyle.Models.Properties.Variables {
-    interface IVariable {
-        defaultValueOverride: any;
-        type: IVariableType;
-        getValue(getDefaultIfMissing?: boolean): any;
-        setValue(value: any): any;
-        render(includeLabel: boolean, includeText: any): string;
-    }
+declare module ProStyle.Types {
 }
 declare module ProStyle.Models {
     class Model {
@@ -337,7 +303,7 @@ declare module ProStyle.Stories {
 }
 declare module ProStyle.Models {
     import Types = ProStyle.Types;
-    class Canvas extends Model {
+    class CanvasModel extends Model {
         padding: number;
         imageRootUrl: string;
         private adjustedImageRootUrl;
@@ -348,7 +314,7 @@ declare module ProStyle.Models {
     }
 }
 declare module ProStyle.Models {
-    class Frame extends Model {
+    class FrameModel extends Model {
         aspectRatio: number;
         padding: number;
         constructor(init: Properties.PropertyList, aspectRatio: number, padding: number);
@@ -356,11 +322,27 @@ declare module ProStyle.Models {
 }
 declare module ProStyle.Models {
     class Story {
-        canvas: Canvas;
-        frame: Frame;
-        flows: Flows.Flow[];
+        canvas: CanvasModel;
+        frame: FrameModel;
+        flows: Flows.FlowModel[];
         classes: any;
-        constructor(canvas: Canvas, frame: Frame, flows: Flows.Flow[], classes: any);
+        constructor(canvas: CanvasModel, frame: FrameModel, flows: Flows.FlowModel[], classes: any);
+    }
+}
+declare module ProStyle.Models {
+    interface IItemModelSet {
+        items: Items.ItemModel[];
+        flow: Flows.FlowModel;
+        story: Story;
+    }
+}
+declare module ProStyle.Models.Properties.Variables {
+    interface IVariable {
+        defaultValueOverride: any;
+        type: IVariableType;
+        getValue(getDefaultIfMissing?: boolean): any;
+        setValue(value: any): any;
+        render(includeLabel: boolean, includeText: any): string;
     }
 }
 declare module ProStyle.Models.Properties.Variables {
@@ -396,108 +378,6 @@ declare module ProStyle.Models.Properties {
         getVariable(jsonName: string): Variables.IVariable;
         renderLabel(): string;
         writeCssBuckets(story: Story, model: Model, containerSize: Types.Size, buckets: any[], initializing?: boolean): any;
-    }
-}
-declare module ProStyle.Models.Properties {
-    class PropertyList {
-        propertyTypes: IPropertyType[];
-        properties: IProperty[];
-        constructor(propertyTypes: IPropertyType[], properties: IProperty[]);
-        getPropertyOfType(propertyType: IPropertyType): IProperty;
-        hasAnythingSet(): boolean;
-    }
-}
-declare module ProStyle.Models {
-    interface IItemSet {
-        items: Items.Item[];
-        flow: Flows.Flow;
-        story: Story;
-    }
-}
-declare module ProStyle.Models {
-    class Page extends Model implements IItemSet {
-        flow: Flows.Flow;
-        steps: Step[];
-        items: Items.Item[];
-        canvasScriptSet: Scripts.ScriptSet;
-        frameScriptSet: Scripts.ScriptSet;
-        pageScriptSet: Scripts.ScriptSet;
-        story: Models.Story;
-        constructor(init: Properties.PropertyList, flow: Flows.Flow);
-        insertStep(index: number): void;
-        deleteStep(index: number): void;
-        deleteItem(index: number): void;
-    }
-}
-declare module ProStyle.Models.Flows {
-    class Flow {
-        story: Story;
-        flowType: string;
-        placement: Types.Placement;
-        pageAspectRatio: number;
-        defaultPageClass: string;
-        pages: Page[];
-        constructor(story: Story, flowType: string, placement: Types.Placement, pageAspectRatio: number, defaultPageClass?: string);
-        getDefaultPageClassName(): string;
-        getDefaultPageClassValue(): any;
-    }
-}
-declare module ProStyle.Models.Flows {
-    class SimpleFlow extends Flow {
-        constructor(story: Story, placement: Types.Placement, defaultPageClass: string, pageAspectRatio: number);
-        getDefaultPageClassName(): string;
-    }
-}
-declare module ProStyle.Extensions.Flows.unknown {
-    import Models = ProStyle.Models;
-    import Types = ProStyle.Types;
-    class Extension extends Models.Flows.SimpleFlow {
-        constructor(story: Models.Story, placement: Types.Placement, defaultPageClass: string, pageAspectRatio: number);
-    }
-}
-declare module ProStyle.Render {
-    import Properties = ProStyle.Models.Properties;
-    interface AfterCssBuckets {
-        (properties: Properties.IProperty[], buckets: any[], containerSize: Types.Size): void;
-    }
-}
-declare module ProStyle.Render {
-    import Models = ProStyle.Models;
-    import Types = ProStyle.Types;
-    import Scripts = ProStyle.Models.Scripts;
-    import Properties = ProStyle.Models.Properties;
-    class Visual {
-        model: Models.Model;
-        element: Element;
-        div: HTMLDivElement;
-        constructor(model: Models.Model, element: Element);
-        initializeProperties(story: Models.Story, elements: Element[], containerSize: Types.Size, timeline: TimelineMax, init: Properties.PropertyList, centerAlignment: boolean, forceProps?: any, afterCssBuckets?: AfterCssBuckets): void;
-        private generateEventTimeline(itemSet, divs, containerSize, event, rootTimeline, label, afterCssBuckets?);
-        generateActionsForStep(itemSet: IItemSet, divs: Element[], containerSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string, scriptSet: Scripts.ScriptSet, afterCssBuckets?: AfterCssBuckets): void;
-        static postProcessCssBuckets(buckets: any[], afterCssBuckets: AfterCssBuckets, properties: Properties.IProperty[], containerSize: Types.Size): void;
-    }
-}
-declare module ProStyle.Render.Flows {
-    interface IFlow {
-        pageElems: Page[];
-        initializePlacement(timeline: TimelineMax): any;
-        pageAspectRatio(): number;
-    }
-}
-declare module ProStyle.Render {
-    interface IItemSet {
-        items: Items.Item[];
-        div: HTMLDivElement;
-    }
-}
-declare module ProStyle.Render.Items {
-    import Models = ProStyle.Models;
-    class Item extends Visual {
-        private item;
-        itemSetElem: IItemSet;
-        constructor(item: Models.Items.Item, itemSetElem: IItemSet, element?: Element);
-        initializeItem(timeline: TimelineMax, cameraSize: Types.Size): void;
-        generateStepActions(itemSet: IItemSet, pageSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string): void;
     }
 }
 declare module ProStyle.Models.Properties {
@@ -659,171 +539,6 @@ declare module ProStyle.Models.Properties {
         renderLabel(property: IProperty): string;
         countOfValues(property: IProperty): number;
         renderVariables(property: IProperty, includeLabel: boolean, includeText: boolean): string;
-    }
-}
-declare module ProStyle.Models.Items {
-    class Item extends Model {
-        itemSet: IItemSet;
-        itemType: string;
-        typeLabel: string;
-        scriptSets: Scripts.ScriptSet[];
-        scriptSet: Scripts.ScriptSet;
-        constructor(itemSet: IItemSet, itemType: string, typeLabel: string, initPropertyLists: Properties.PropertyList[], scriptSets: Scripts.ScriptSet[]);
-        getScriptSet(index: number): Scripts.ScriptSet;
-        getCountOfStepsUsed(): number;
-    }
-}
-declare module ProStyle.Render.Items {
-    import Models = ProStyle.Models;
-    class SequencedItem extends Item {
-        sequencedItem: Models.Items.SequencedItem;
-        constructor(sequencedItem: Models.Items.SequencedItem, itemSetElem: IItemSet);
-        moveToSubStep(position: number, animate: boolean, cameraSize: Types.Size): void;
-        getCountOfSubSteps(): number;
-    }
-}
-declare module ProStyle.Models.Scripts {
-    class Script {
-        scriptSet: ScriptSet;
-        type: ScriptType;
-        x: number;
-        y: number;
-        constructor(scriptSet: ScriptSet, type: ScriptType);
-    }
-}
-declare module ProStyle.Models.Scripts {
-    class ScriptSet {
-        itemSet: IItemSet;
-        name: string;
-        itemProperties: Properties.IPropertyType[];
-        scripts: Script[];
-        constructor(itemSet: IItemSet, name: string, itemProperties: Properties.IPropertyType[]);
-        getCountOfStepsUsed(): number;
-        insertStep(index: number): void;
-        deleteStep(index: number): void;
-    }
-}
-declare module ProStyle.Extensions.Items.unknown {
-    import Models = ProStyle.Models;
-    import Items = Models.Items;
-    class Extension extends Items.Item {
-        unknownType: string;
-        constructor(itemSet: Models.IItemSet, unknownType: string);
-    }
-}
-declare module ProStyle.Extensions.Items.unknown {
-    import Models = ProStyle.Models;
-    function readJson(itemSet: Models.IItemSet, json: any): Models.Items.Item;
-}
-declare module ProStyle.Serialization {
-    import Models = ProStyle.Models;
-    class ItemReader {
-        static read(itemSet: Models.IItemSet, json: any): Models.Items.Item;
-        static lookupExtension(itemType: string): any;
-    }
-}
-declare module ProStyle.Render {
-    import Models = ProStyle.Models;
-    class Page extends Visual implements IItemSet {
-        page: Models.Page;
-        flowElem: Flows.Flow;
-        flowIndex: number;
-        pageIndex: number;
-        steps: Step[];
-        items: Items.Item[];
-        constructor(page: Models.Page, flowElem: Flows.Flow, flowIndex: number, pageIndex: number);
-        static createItems(itemSet: Render.IItemSet, items: Models.Items.Item[]): void;
-        generateStepsActions(timeline: TimelineMax, priorStep: Render.Step): Render.Step;
-    }
-}
-declare module ProStyle.Render.Flows {
-    import Models = ProStyle.Models;
-    class Flow extends Visual implements IFlow {
-        private flow;
-        cameraElem: Camera;
-        flowIndex: number;
-        pageElems: Page[];
-        constructor(flow: Models.Flows.Flow, cameraElem: Camera, flowIndex: number);
-        initializePlacement(timeline: TimelineMax): void;
-        initializePerspective(): void;
-        initializeFlowPlacement(timeline: TimelineMax): void;
-        private generateCameraMovement(timeline, label);
-        initializePages(timeline: TimelineMax): void;
-        generatePageMovement(timeline: TimelineMax, label: string, pageIndex: number): void;
-        generateStepsActions(timeline: TimelineMax, priorStep: Render.Step): Render.Step;
-        pageAspectRatio(): number;
-    }
-}
-declare module ProStyle.Render.Flows {
-    import Models = ProStyle.Models;
-    class SimpleFlow extends Flow {
-        private simpleFlow;
-        constructor(simpleFlow: Models.Flows.SimpleFlow, cameraElem: Camera, flowIndex: number);
-        initializePages(timeline: TimelineMax): void;
-        generatePageMovement(timeline: TimelineMax, label: string, pageIndex: number): void;
-        private applyCss(timeline, div, label, duration, css, ease);
-    }
-}
-declare module ProStyle.Extensions.Flows.unknown {
-    import Render = ProStyle.Render;
-    class Renderer extends Render.Flows.SimpleFlow {
-        constructor(unknownFlow: Extension, cameraElem: Render.Camera, flowIndex: number);
-    }
-}
-declare module ProStyle.Extensions.Flows.unknown {
-    import Models = ProStyle.Models;
-    function readJson(story: Models.Story, json: any): Models.Flows.Flow;
-}
-declare module ProStyle.Extensions.Items.unknown {
-    import Items = ProStyle.Render.Items;
-    class Renderer extends Items.Item {
-        private unknownItem;
-        private divs;
-        constructor(unknownItem: Extension, itemSetElem: ProStyle.Render.IItemSet);
-    }
-}
-declare module ProStyle.Models.Scripts {
-    class ActionsScript extends Script {
-        actions: Actions.Action[];
-        constructor(scriptSet: ScriptSet, type: ScriptType);
-        removeAction(action: Actions.Action): void;
-    }
-}
-declare module ProStyle.Models.Actions {
-    enum ActionType {
-        SetProperties = 0,
-    }
-}
-declare module ProStyle.Models.Actions.ActionType {
-    function fromString(value: string): ActionType;
-    function toString(value: ActionType): string;
-}
-declare module ProStyle.Models.Actions {
-    class Action {
-        script: Scripts.ActionsScript;
-        actionType: ActionType;
-        delay: number;
-        constructor(script: Scripts.ActionsScript, actionType: ActionType, delay: number);
-        saveJson(): any;
-    }
-}
-declare module ProStyle.Models.Properties {
-    interface IPropertySet {
-        properties: IProperty[];
-    }
-}
-declare module ProStyle.Models.Actions {
-    class SetPropertiesAction extends Action implements Properties.IPropertySet {
-        properties: Properties.IProperty[];
-        constructor(script: Scripts.ActionsScript, delay: number, properties: Properties.IProperty[]);
-    }
-}
-declare module ProStyle.Models.Flows {
-    class PlacementFlow extends Flow {
-        private defaultPageClassIfNotGiven;
-        constructor(story: Story, flowType: string, placement: Types.Placement, defaultPageClass: string, pageAspectRatio: number, defaultPageClassIfNotGiven: string);
-        getDefaultPageClassName(): string;
-        getDefaultPageClassValue(): any;
     }
 }
 declare module ProStyle.Models.Properties {
@@ -1103,86 +818,71 @@ declare module ProStyle.Models.Properties {
         static TRANSFORM_ORIGIN_CONTAINER: TransformOriginPropertyType;
     }
 }
-declare module ProStyle.Models.Items {
-    class ImageItem extends Item {
-        src: string;
-        width: number;
-        height: number;
-        constructor(itemSet: IItemSet, src: string, width: number, height: number, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet);
+declare module ProStyle.Models {
+    class CanvasPropertyTypes {
+        private static _propertyTypes;
+        static get(): Properties.IPropertyType[];
     }
 }
-declare module ProStyle.Models.Items {
-    class LayerItem extends Item implements IItemSet {
-        items: Items.Item[];
-        flow: Flows.Flow;
+declare module ProStyle.Models {
+    class FramePropertyTypes {
+        private static _propertyTypes;
+        static get(): Properties.IPropertyType[];
+    }
+}
+declare module ProStyle.Models {
+    class PageModel extends Model implements IItemModelSet {
+        flow: Flows.FlowModel;
+        steps: Step[];
+        items: Items.ItemModel[];
+        canvasScriptSet: Scripts.ScriptSet;
+        frameScriptSet: Scripts.ScriptSet;
+        pageScriptSet: Scripts.ScriptSet;
         story: Models.Story;
-        constructor(itemSet: IItemSet, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet);
-        getCountOfStepsUsed(): number;
+        constructor(init: Properties.PropertyList, flow: Flows.FlowModel);
+        insertStep(index: number): void;
+        deleteStep(index: number): void;
+        deleteItem(index: number): void;
     }
 }
-declare module ProStyle.Models.Items {
-    class SequencedItem extends Item {
-        sequenceOnStepIndex: number;
-        constructor(itemSet: IItemSet, itemType: string, typeLabel: string, sequenceOnStepIndex: number, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet);
-    }
-}
-declare module ProStyle.Models.Items {
-    class TextItem extends Item {
-        text: string;
-        stackedLines: boolean;
-        stackedWords: boolean;
-        stackedChars: boolean;
-        linesInit: Properties.PropertyList;
-        linesScriptSet: Scripts.ScriptSet;
-        wordsInit: Properties.PropertyList;
-        wordsScriptSet: Scripts.ScriptSet;
-        charsInit: Properties.PropertyList;
-        charsScriptSet: Scripts.ScriptSet;
-        constructor(itemSet: IItemSet, text: string, stackedLines: boolean, stackedWords: boolean, stackedChars: boolean, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet, linesInit: Properties.PropertyList, linesScriptSet: Scripts.ScriptSet, wordsInit: Properties.PropertyList, wordsScriptSet: Scripts.ScriptSet, charsInit: Properties.PropertyList, charsScriptSet: Scripts.ScriptSet);
-    }
-}
-declare module ProStyle.Models.Properties.PerElement {
-    class Canvas {
+declare module ProStyle.Models {
+    class PagePropertyTypes {
         private static _propertyTypes;
-        static getPropertyTypes(): Properties.IPropertyType[];
+        static get(): Properties.IPropertyType[];
     }
 }
-declare module ProStyle.Models.Properties.PerElement {
-    class Frame {
-        private static _propertyTypes;
-        static getPropertyTypes(): Properties.IPropertyType[];
+declare module ProStyle.Models {
+    class Step {
+        autoAdvanceDelay: number;
+        startLabel: string;
+        stopLabel: string;
+        time: number;
+        constructor(autoAdvanceDelay?: number);
     }
 }
-declare module ProStyle.Models.Properties.PerElement {
-    class ImageItem {
-        private static _propertyTypes;
-        static getPropertyTypes(): Properties.IPropertyType[];
+declare module ProStyle.Models.Properties.Variables {
+    class Variable<T> implements IVariable {
+        type: IVariableType;
+        private _value;
+        defaultValueOverride: T;
+        constructor(type: IVariableType);
+        getValue(getDefaultIfMissing?: boolean): T;
+        setValue(value: T): void;
+        render(includeLabel: boolean, includeText: any): string;
     }
 }
-declare module ProStyle.Models.Properties.PerElement {
-    class LayerItem {
-        private static _propertyTypes;
-        static getPropertyTypes(): Properties.IPropertyType[];
+declare module ProStyle.Models.Properties {
+    interface IPropertySet {
+        properties: IProperty[];
     }
 }
-declare module ProStyle.Models.Properties.PerElement {
-    class Page {
-        private static _propertyTypes;
-        static getPropertyTypes(): Properties.IPropertyType[];
-    }
-}
-declare module ProStyle.Models.Properties.PerElement {
-    class TextItem {
-        private static _propertyTypes;
-        private static _linePropertyTypes;
-        private static _wordPropertyTypes;
-        private static _charPropertyTypes;
-        private static cacheProperties();
-        private static addPropertyType(arrays, propertyType);
-        static getPropertyTypes(): Properties.IPropertyType[];
-        static getLinePropertyTypes(): Properties.IPropertyType[];
-        static getWordPropertyTypes(): Properties.IPropertyType[];
-        static getCharPropertyTypes(): Properties.IPropertyType[];
+declare module ProStyle.Models.Properties {
+    class PropertyList {
+        propertyTypes: IPropertyType[];
+        properties: IProperty[];
+        constructor(propertyTypes: IPropertyType[], properties: IProperty[]);
+        getPropertyOfType(propertyType: IPropertyType): IProperty;
+        hasAnythingSet(): boolean;
     }
 }
 declare module ProStyle.Models.Properties {
@@ -1214,15 +914,87 @@ declare module ProStyle.Models.Properties {
         isDefault(): boolean;
     }
 }
-declare module ProStyle.Models.Properties.Variables {
-    class Variable<T> implements IVariable {
-        type: IVariableType;
-        private _value;
-        defaultValueOverride: T;
-        constructor(type: IVariableType);
-        getValue(getDefaultIfMissing?: boolean): T;
-        setValue(value: T): void;
-        render(includeLabel: boolean, includeText: any): string;
+declare module ProStyle.Models.Scripts {
+    class Script {
+        scriptSet: ScriptSet;
+        type: ScriptType;
+        x: number;
+        y: number;
+        constructor(scriptSet: ScriptSet, type: ScriptType);
+    }
+}
+declare module ProStyle.Models.Scripts {
+    class ActionsScript extends Script {
+        actions: Actions.Action[];
+        constructor(scriptSet: ScriptSet, type: ScriptType);
+        removeAction(action: Actions.Action): void;
+    }
+}
+declare module ProStyle.Models.Actions {
+    enum ActionType {
+        SetProperties = 0,
+    }
+}
+declare module ProStyle.Models.Actions.ActionType {
+    function fromString(value: string): ActionType;
+    function toString(value: ActionType): string;
+}
+declare module ProStyle.Models.Actions {
+    class Action {
+        script: Scripts.ActionsScript;
+        actionType: ActionType;
+        delay: number;
+        constructor(script: Scripts.ActionsScript, actionType: ActionType, delay: number);
+        saveJson(): any;
+    }
+}
+declare module ProStyle.Models.Actions {
+    class SetPropertiesAction extends Action implements Properties.IPropertySet {
+        properties: Properties.IProperty[];
+        constructor(script: Scripts.ActionsScript, delay: number, properties: Properties.IProperty[]);
+    }
+}
+declare module ProStyle.Models.Flows {
+    class FlowModel extends Model {
+        story: Story;
+        flowType: string;
+        placement: Types.Placement;
+        pageAspectRatio: number;
+        defaultPageClass: string;
+        pages: PageModel[];
+        constructor(story: Story, flowType: string, placement: Types.Placement, pageAspectRatio: number, defaultPageClass?: string);
+        getDefaultPageClassName(): string;
+        getDefaultPageClassValue(): any;
+        serialize(): any;
+        createView(camera: Views.CameraView, flowIndex: number): Views.Flows.FlowView;
+    }
+}
+declare module ProStyle.Models.Flows {
+    class PlacementFlowModel extends FlowModel {
+        private defaultPageClassIfNotGiven;
+        constructor(story: Story, flowType: string, placement: Types.Placement, defaultPageClass: string, pageAspectRatio: number, defaultPageClassIfNotGiven: string);
+        getDefaultPageClassName(): string;
+        getDefaultPageClassValue(): any;
+    }
+}
+declare module ProStyle.Models.Items {
+    class ItemModel extends Model {
+        itemModelSet: IItemModelSet;
+        itemType: string;
+        typeLabel: string;
+        scriptSets: Scripts.ScriptSet[];
+        scriptSet: Scripts.ScriptSet;
+        constructor(itemModelSet: IItemModelSet, itemType: string, typeLabel: string, initPropertyLists: Properties.PropertyList[], scriptSets: Scripts.ScriptSet[]);
+        getScriptSet(index: number): Scripts.ScriptSet;
+        getCountOfStepsUsed(): number;
+        serialize(): any;
+        createView(itemViewSet: Views.IItemViewSet): Views.Items.ItemView;
+    }
+}
+declare module ProStyle.Models.Items {
+    class SequencedItemModel extends ItemModel {
+        sequenceOnStepIndex: number;
+        constructor(itemModelSet: IItemModelSet, itemType: string, typeLabel: string, sequenceOnStepIndex: number, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet);
     }
 }
 declare module ProStyle.Models.Scripts {
@@ -1264,6 +1036,18 @@ declare module ProStyle.Models.Scripts {
     }
 }
 declare module ProStyle.Models.Scripts {
+    class ScriptSet {
+        itemModelSet: IItemModelSet;
+        name: string;
+        itemProperties: Properties.IPropertyType[];
+        scripts: Script[];
+        constructor(itemModelSet: IItemModelSet, name: string, itemProperties: Properties.IPropertyType[]);
+        getCountOfStepsUsed(): number;
+        insertStep(index: number): void;
+        deleteStep(index: number): void;
+    }
+}
+declare module ProStyle.Models.Scripts {
     class StepEvent extends ActionsScript {
         stepIndex: number;
         constructor(scriptSet: ScriptSet, stepIndex: number);
@@ -1276,83 +1060,79 @@ declare module ProStyle.Models.Scripts {
     }
 }
 declare module ProStyle.Models {
-    class Step {
-        autoAdvanceDelay: number;
-        startLabel: string;
-        stopLabel: string;
-        time: number;
-        constructor(autoAdvanceDelay?: number);
+}
+declare module ProStyle.Views {
+    interface IItemViewSet {
+        items: Items.ItemView[];
+        div: HTMLDivElement;
+    }
+}
+declare module ProStyle.Views {
+    import Properties = ProStyle.Models.Properties;
+    interface AfterCssBuckets {
+        (properties: Properties.IProperty[], buckets: any[], containerSize: Types.Size): void;
+    }
+}
+declare module ProStyle.Views {
+    import Models = ProStyle.Models;
+    import Types = ProStyle.Types;
+    import Scripts = ProStyle.Models.Scripts;
+    import Properties = ProStyle.Models.Properties;
+    class View {
+        model: Models.Model;
+        element: Element;
+        div: HTMLDivElement;
+        constructor(model: Models.Model, element: Element);
+        initializeProperties(story: Models.Story, elements: Element[], containerSize: Types.Size, timeline: TimelineMax, init: Properties.PropertyList, centerAlignment: boolean, forceProps?: any, afterCssBuckets?: AfterCssBuckets): void;
+        private generateEventTimeline(itemViewSet, divs, containerSize, event, rootTimeline, label, afterCssBuckets?);
+        generateActionsForStep(itemViewSet: IItemViewSet, divs: Element[], containerSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string, scriptSet: Scripts.ScriptSet, afterCssBuckets?: AfterCssBuckets): void;
+        static postProcessCssBuckets(buckets: any[], afterCssBuckets: AfterCssBuckets, properties: Properties.IProperty[], containerSize: Types.Size): void;
     }
 }
 declare module ProStyle.Serialization {
     import Models = ProStyle.Models;
     class FlowReader {
-        static read(story: Models.Story, json: any): Models.Flows.Flow;
+        static read(story: Models.Story, json: any): Models.Flows.FlowModel;
         static lookupExtension(itemType: string): any;
     }
 }
-declare module ProStyle.Render {
+declare module ProStyle.Views {
     import Models = ProStyle.Models;
-    class Camera extends Visual {
+    class CameraView extends View {
         story: Models.Story;
-        frameElem: Frame;
+        frame: FrameView;
         size: Types.Size;
-        flowElems: Flows.Flow[];
-        constructor(story: Models.Story, frameElem: Frame);
+        flows: Flows.FlowView[];
+        constructor(story: Models.Story, frame: FrameView);
         resize(): void;
         stepStopped(timeline: TimelineMax, step: Step): void;
     }
 }
-declare module ProStyle.Render {
+declare module ProStyle.Views {
     import Models = ProStyle.Models;
-    class Frame extends Visual {
+    class FrameView extends View {
         story: Models.Story;
-        canvasElem: Canvas;
+        canvas: CanvasView;
         size: Types.Size;
-        cameraElem: Camera;
-        constructor(story: Models.Story, canvasElem: Canvas);
+        camera: CameraView;
+        constructor(story: Models.Story, canvas: CanvasView);
         stepStopped(timeline: TimelineMax, step: Step): void;
         resize(): void;
-    }
-}
-declare module ProStyle.Util.Events {
-    interface ILiteEvent<T> {
-        on(handler: {
-            (data?: T): void;
-        }): any;
-        off(handler: {
-            (data?: T): void;
-        }): any;
-    }
-}
-declare module ProStyle.Util.Events {
-    class LiteEvent<T> implements ILiteEvent<T> {
-        private handlers;
-        on(handler: {
-            (data?: T): void;
-        }): void;
-        off(handler: {
-            (data?: T): void;
-        }): void;
-        trigger(data?: T): void;
-        dispose(): void;
     }
 }
 declare module ProStyle.Play {
-    import Render = ProStyle.Render;
     interface IPlayerProgress {
         progress: number;
         time: number;
-        step: Render.Step;
+        step: ProStyle.Views.Step;
         subStep: number;
     }
 }
 declare module ProStyle.Play {
     import Events = ProStyle.Util.Events;
-    import Render = ProStyle.Render;
     interface IPlayer {
         timeline: TimelineMax;
-        steps: Render.Step[];
+        steps: ProStyle.Views.Step[];
         isAtStoryStart(): boolean;
         isAtStoryEnd(): boolean;
         isAtStepStart(): boolean;
@@ -1360,9 +1140,9 @@ declare module ProStyle.Play {
         isPaused(): boolean;
         progressChanged: Events.ILiteEvent<IPlayerProgress>;
         stateChanged: Events.ILiteEvent<boolean>;
-        stepComplete: Events.ILiteEvent<Render.Step>;
+        stepComplete: Events.ILiteEvent<ProStyle.Views.Step>;
         seek(progress: number, animate?: boolean): any;
-        seekStep(step: Render.Step, animate?: boolean): any;
+        seekStep(step: ProStyle.Views.Step, animate?: boolean): any;
         playCurrentStep(): any;
         playNextStep(animate?: boolean): any;
         togglePlay(): any;
@@ -1372,20 +1152,20 @@ declare module ProStyle.Play {
 }
 declare module ProStyle.Play {
     import Events = ProStyle.Util.Events;
-    import Render = ProStyle.Render;
+    import Views = ProStyle.Views;
     class Player {
-        frame: Render.Frame;
+        frame: Views.FrameView;
         timeline: TimelineMax;
-        steps: Render.Step[];
+        steps: Views.Step[];
         progressChanged: Events.LiteEvent<IPlayerProgress>;
         stateChanged: Events.LiteEvent<boolean>;
-        stepComplete: Events.LiteEvent<Render.Step>;
+        stepComplete: Events.LiteEvent<Views.Step>;
         private animating;
         private currentStep;
         private currentSubStep;
         state: IPlayerProgress;
-        constructor(frame: Render.Frame);
-        refreshTimeline(frameElem: Render.Frame): void;
+        constructor(frame: Views.FrameView);
+        refreshTimeline(frame: Views.FrameView): void;
         isAtStoryStart(): boolean;
         isAtStoryEnd(): boolean;
         isAtStepStart(nudgeToStart?: boolean): boolean;
@@ -1402,7 +1182,7 @@ declare module ProStyle.Play {
         private moveTo(time, animate, thenPlay);
         private thenPlay(isAtStepEnd, playNextStep?);
         seek(progress: number, animate?: boolean): void;
-        seekStep(step: Render.Step, animate?: boolean): void;
+        seekStep(step: Views.Step, animate?: boolean): void;
         private alignSequencedItemsToStep(destStep, atStepStart, atStepEnd, animate?);
         private playSubStep(subStep, animate?);
         private getRemainingSubStepCount();
@@ -1413,18 +1193,67 @@ declare module ProStyle.Play {
         pause(): void;
     }
 }
+declare module ProStyle.Config {
+    interface IAutoConfig {
+        start?: boolean;
+        advance?: boolean;
+        advanceDelay?: number;
+        restart?: boolean;
+        resize?: boolean;
+    }
+}
 declare module ProStyle.Play {
-    import Render = ProStyle.Render;
+    import Config = ProStyle.Config;
+    class AutoPlay {
+        private canvas;
+        private config;
+        private timeout;
+        constructor(canvas: Views.CanvasView, config: Config.IAutoConfig);
+        private stepComplete(step);
+        pause(): void;
+    }
+}
+declare module ProStyle.Config {
+    interface IControlsConfig {
+        type: string;
+    }
+}
+declare module ProStyle.Play {
     import Config = ProStyle.Config;
     class Controls {
         resize(): void;
-        static byConfig(canvasElem: Render.Canvas, config: Config.IControlsConfig): Controls;
+        static byConfig(canvas: Views.CanvasView, config: Config.IControlsConfig): Controls;
     }
 }
-declare module ProStyle.Render {
-    class Canvas extends Visual {
+declare module ProStyle.Config {
+    interface IKeyboardConfig {
+        play: number[];
+        pause: number[];
+        togglePlay: number[];
+        back: number[];
+        playNext: number[];
+        start: number[];
+        end: number[];
+    }
+}
+declare module ProStyle.Config {
+    interface ITouchConfig {
+    }
+}
+declare module ProStyle.Config {
+    interface IConfig {
+        auto?: IAutoConfig;
+        controls?: IControlsConfig;
+        keyboard?: IKeyboardConfig;
+        touch?: ITouchConfig;
+        mouseWheel?: boolean;
+        debugBar?: boolean;
+    }
+}
+declare module ProStyle.Views {
+    class CanvasView extends View {
         private story;
-        frameElem: Render.Frame;
+        frame: Views.FrameView;
         player: Play.IPlayer;
         controls: Play.Controls;
         autoPlay: Play.AutoPlay;
@@ -1441,26 +1270,133 @@ declare module ProStyle.Render {
         private showDebugBar();
     }
 }
-declare module ProStyle.Play {
-    import Render = ProStyle.Render;
-    import Config = ProStyle.Config;
-    class AutoPlay {
-        private canvasElem;
-        private config;
-        private timeout;
-        constructor(canvasElem: Render.Canvas, config: Config.IAutoConfig);
-        private stepComplete(step);
-        pause(): void;
+declare module ProStyle.Views.Items {
+    import Models = ProStyle.Models;
+    class ItemView extends View {
+        model: Models.Items.ItemModel;
+        itemViewSet: IItemViewSet;
+        constructor(model: Models.Items.ItemModel, itemViewSet: IItemViewSet, element?: Element);
+        initializeItem(timeline: TimelineMax, cameraSize: Types.Size): void;
+        generateStepActions(itemViewSet: IItemViewSet, pageSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string): void;
+    }
+}
+declare module ProStyle.Views.Items {
+    import Models = ProStyle.Models;
+    class SequencedItemView extends ItemView {
+        model: Models.Items.SequencedItemModel;
+        constructor(model: Models.Items.SequencedItemModel, itemViewSet: IItemViewSet);
+        moveToSubStep(position: number, animate: boolean, cameraSize: Types.Size): void;
+        getCountOfSubSteps(): number;
+    }
+}
+declare module ProStyle.Extensions.Items.Unknown {
+    import Models = ProStyle.Models;
+    import Items = Models.Items;
+    class UnknownItemModel extends Items.ItemModel {
+        unknownType: string;
+        constructor(itemModelSet: Models.IItemModelSet, unknownType: string);
+        serialize(): any;
+    }
+}
+declare module ProStyle.Extensions.Items.Unknown {
+    function deserialize(itemModelSet: Models.IItemModelSet, json: any): UnknownItemModel;
+}
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
+    class ItemReader {
+        static read(itemSet: Models.IItemModelSet, json: any): Models.Items.ItemModel;
+        static lookupExtension(itemType: string): any;
+    }
+}
+declare module ProStyle.Views {
+    import Models = ProStyle.Models;
+    class PageView extends View implements IItemViewSet {
+        model: Models.PageModel;
+        flow: Flows.FlowView;
+        flowIndex: number;
+        pageIndex: number;
+        steps: Step[];
+        items: Items.ItemView[];
+        constructor(model: Models.PageModel, flow: Flows.FlowView, flowIndex: number, pageIndex: number);
+        static createItems(itemViewSet: Views.IItemViewSet, items: Models.Items.ItemModel[]): void;
+        generateStepsActions(timeline: TimelineMax, priorStep: Views.Step): Views.Step;
+    }
+}
+declare module ProStyle.Views {
+    import Models = ProStyle.Models;
+    class Step {
+        step: Models.Step;
+        flowIndex: number;
+        pageIndex: number;
+        stepIndex: number;
+        sequencedItems: Views.Items.SequencedItemView[];
+        label: string;
+        startLabel: string;
+        startTime: number;
+        stopLabel: string;
+        stopTime: number;
+        time: number;
+        playerStepIndex: number;
+        constructor(step: Models.Step, flowIndex: number, pageIndex: number, stepIndex: number, sequencedItems: Views.Items.SequencedItemView[]);
+        isAtStart(time: number): boolean;
+        isAtEnd(time: number): boolean;
+        getSubStepCount(): number;
+    }
+}
+declare module ProStyle.Views {
+    class Timeline {
+        timeline: TimelineMax;
+        constructor(frame: Views.FrameView, positionChanged: () => void);
+        private generateTimeline(frame, positionChanged);
+    }
+}
+declare module ProStyle.Views.Actions {
+    import Actions = ProStyle.Models.Actions;
+    class SetPropertiesAction {
+        static generateTimeline(itemViewSet: IItemViewSet, view: View, divs: Element[], action: Actions.SetPropertiesAction, timeline: TimelineMax, containerSize: Types.Size, afterCssBuckets?: AfterCssBuckets): number;
+        private static getMoveTo(properties, items);
+        static generateMoveTo(div: HTMLDivElement, targetDiv: HTMLDivElement, timeline: TimelineMax): void;
+    }
+}
+declare module ProStyle.Views.Flows {
+    interface IFlowView {
+        pages: PageView[];
+        initializePlacement(timeline: TimelineMax): any;
+        pageAspectRatio(): number;
+    }
+}
+declare module ProStyle.Views.Flows {
+    import Models = ProStyle.Models;
+    class FlowView extends View implements IFlowView {
+        model: Models.Flows.FlowModel;
+        camera: CameraView;
+        flowIndex: number;
+        pages: PageView[];
+        constructor(model: Models.Flows.FlowModel, camera: CameraView, flowIndex: number);
+        initializePlacement(timeline: TimelineMax): void;
+        initializePerspective(): void;
+        initializeFlowPlacement(timeline: TimelineMax): void;
+        private generateCameraMovement(timeline, label);
+        initializePages(timeline: TimelineMax): void;
+        generatePageMovement(timeline: TimelineMax, label: string, pageIndex: number): void;
+        generateStepsActions(timeline: TimelineMax, priorStep: Views.Step): Views.Step;
+        pageAspectRatio(): number;
+    }
+}
+declare module ProStyle.Views.Flows {
+    import Models = ProStyle.Models;
+    class PlacementFlowView extends FlowView {
+        model: Models.Flows.FlowModel;
+        constructor(model: Models.Flows.FlowModel, camera: CameraView, flowIndex: number);
     }
 }
 declare module ProStyle.Play {
-    import Render = ProStyle.Render;
     import Config = ProStyle.Config;
     class KeyboardPlay {
-        private canvasElem;
+        private canvas;
         private config;
         private player;
-        constructor(canvasElem: Render.Canvas, config: Config.IKeyboardConfig);
+        constructor(canvas: Views.CanvasView, config: Config.IKeyboardConfig);
         private getDefaultConfig();
         private listenForKeyPresses(config);
         private mapKeys(map, keys, func);
@@ -1473,11 +1409,21 @@ declare module ProStyle.Play {
         private end();
     }
 }
+declare module ProStyle.Config {
+    interface ITrackControlsConfig extends IControlsConfig {
+        autoHide?: boolean;
+        color?: string;
+        highlightColor?: string;
+        backColor?: string;
+        stepColor1?: string;
+        stepColor2?: string;
+        startHint?: boolean;
+    }
+}
 declare module ProStyle.Play {
-    import Render = ProStyle.Render;
     import Config = ProStyle.Config;
     class TrackControls extends Controls {
-        private canvasElem;
+        private canvas;
         private config;
         private COLOR;
         private HIGHLIGHT_COLOR;
@@ -1505,7 +1451,7 @@ declare module ProStyle.Play {
         private scrubberHoverPointClass;
         private scrubberHoverTextClass;
         private progress;
-        constructor(canvasElem: Render.Canvas, config: Config.ITrackControlsConfig);
+        constructor(canvas: Views.CanvasView, config: Config.ITrackControlsConfig);
         private setupButtons();
         private setupScrubber();
         private scrubberMouseMove(e);
@@ -1521,94 +1467,88 @@ declare module ProStyle.Play {
         private addButton(tooltip, svg, clickEvent);
     }
 }
-declare module ProStyle.Render.Actions {
-    import Actions = ProStyle.Models.Actions;
-    class SetPropertiesAction {
-        static generateTimeline(itemSet: IItemSet, visual: Visual, divs: Element[], action: Actions.SetPropertiesAction, timeline: TimelineMax, containerSize: Types.Size, afterCssBuckets?: AfterCssBuckets): number;
-        private static getMoveTo(properties, items);
-        static generateMoveTo(div: HTMLDivElement, targetDiv: HTMLDivElement, timeline: TimelineMax): void;
+declare module ProStyle.Controllers {
+    class Controller {
+        canvas: Views.CanvasView;
+        player: Play.IPlayer;
+        constructor(canvas: Views.CanvasView, player: Play.IPlayer);
+        serialize(): any;
     }
 }
-declare module ProStyle.Render.Flows {
+declare module ProStyle.Extensions.Flows.Simple {
     import Models = ProStyle.Models;
-    class PlacementFlow extends Flow {
-        constructor(flow: Models.Flows.Flow, cameraElem: Camera, flowIndex: number);
+    import Types = ProStyle.Types;
+    class SimpleFlowModel extends Models.Flows.FlowModel {
+        constructor(story: Models.Story, placement: Types.Placement, defaultPageClass: string, pageAspectRatio: number);
+        getDefaultPageClassName(): string;
+        serialize(): any;
+        createView(camera: Views.CameraView, flowIndex: number): Views.Flows.FlowView;
     }
 }
-declare module ProStyle.Render.Items {
+declare module ProStyle.Extensions.Flows.Simple {
+    import Views = ProStyle.Views;
+    class SimpleFlowView extends Views.Flows.FlowView {
+        model: SimpleFlowModel;
+        constructor(model: SimpleFlowModel, camera: Views.CameraView, flowIndex: number);
+        initializePages(timeline: TimelineMax): void;
+        generatePageMovement(timeline: TimelineMax, label: string, pageIndex: number): void;
+        private applyCss(timeline, div, label, duration, css, ease);
+    }
+}
+declare module ProStyle.Extensions.Flows.Simple {
     import Models = ProStyle.Models;
-    class ImageItem extends Item {
-        private imageItem;
-        constructor(imageItem: Models.Items.ImageItem, itemSetElem: IItemSet);
+    function deserialize(story: Models.Story, json: any): SimpleFlowModel;
+}
+declare module ProStyle.Extensions.Flows.Simple {
+    function serialize(flow: SimpleFlowModel): any;
+}
+declare module ProStyle.Extensions.Flows.Unknown {
+    import Models = ProStyle.Models;
+    import Types = ProStyle.Types;
+    class UnknownFlowModel extends Simple.SimpleFlowModel {
+        constructor(story: Models.Story, placement: Types.Placement, defaultPageClass: string, pageAspectRatio: number);
+        serialize(): any;
+    }
+}
+declare module ProStyle.Extensions.Flows.Unknown {
+    class UnknownFlowView extends Simple.SimpleFlowView {
+        constructor(model: UnknownFlowModel, camera: Views.CameraView, flowIndex: number);
+    }
+}
+declare module ProStyle.Extensions.Flows.Unknown {
+    import Models = ProStyle.Models;
+    function deserialize(story: Models.Story, json: any): UnknownFlowModel;
+}
+declare module ProStyle.Extensions.Flows.Unknown {
+    function serialize(flow: UnknownFlowModel): any;
+}
+declare module ProStyle.Extensions.Items.Image {
+    import Models = ProStyle.Models;
+    import Items = Models.Items;
+    import Properties = Models.Properties;
+    import Scripts = Models.Scripts;
+    class ImageItemModel extends Items.ItemModel {
+        src: string;
+        width: number;
+        height: number;
+        constructor(itemModelSet: Models.IItemModelSet, src: string, width: number, height: number, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet);
+        serialize(): any;
+        createView(itemViewSet: Views.IItemViewSet): ImageItemView;
+    }
+}
+declare module ProStyle.Extensions.Items.Image {
+    import Items = ProStyle.Views.Items;
+    class ImageItemView extends Items.ItemView {
+        model: ImageItemModel;
+        constructor(model: ImageItemModel, itemSetElem: ProStyle.Views.IItemViewSet);
         initializeItem(timeline: TimelineMax, cameraSize: Types.Size): void;
     }
 }
-declare module ProStyle.Render.Items {
-    import Models = ProStyle.Models;
-    class LayerItem extends Item implements IItemSet {
-        private layerItem;
-        items: Items.Item[];
-        constructor(layerItem: Models.Items.LayerItem, itemSetElem: IItemSet);
-        initializeItem(timeline: TimelineMax, cameraSize: Types.Size): void;
-        generateStepActions(itemSet: IItemSet, pageSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string): void;
-    }
-}
-declare module ProStyle.Render.Items {
-    import Models = ProStyle.Models;
-    class TextItem extends Item {
-        private textItem;
-        splitText: any;
-        lines: boolean;
-        words: boolean;
-        chars: boolean;
-        constructor(textItem: Models.Items.TextItem, itemSetElem: IItemSet);
-        initializeItem(timeline: TimelineMax, cameraSize: Types.Size): void;
-        generateStepActions(itemSet: IItemSet, pageSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string): void;
-    }
-}
-declare module ProStyle.Render {
-    import Models = ProStyle.Models;
-    class Step {
-        step: Models.Step;
-        flowIndex: number;
-        pageIndex: number;
-        stepIndex: number;
-        sequencedItems: Render.Items.SequencedItem[];
-        label: string;
-        startLabel: string;
-        startTime: number;
-        stopLabel: string;
-        stopTime: number;
-        time: number;
-        playerStepIndex: number;
-        constructor(step: Models.Step, flowIndex: number, pageIndex: number, stepIndex: number, sequencedItems: Render.Items.SequencedItem[]);
-        isAtStart(time: number): boolean;
-        isAtEnd(time: number): boolean;
-        getSubStepCount(): number;
-    }
-}
-declare module ProStyle.Render {
-    class Timeline {
-        timeline: TimelineMax;
-        constructor(frameElem: Render.Frame, positionChanged: () => void);
-        private generateTimeline(frameElem, positionChanged);
-    }
-}
-declare module ProStyle.Serialization {
-    import Actions = ProStyle.Models.Actions;
-    import Scripts = ProStyle.Models.Scripts;
-    class ActionReader {
-        static readArray(script: Scripts.ActionsScript, json: any): Actions.Action[];
-        static read(script: Scripts.ActionsScript, json: any): Actions.Action;
-        private static readPropertiesAction(script, json);
-    }
-}
-declare module ProStyle.Serialization {
-    import Actions = ProStyle.Models.Actions;
-    class ActionWriter {
-        static writeArray(actions: Actions.Action[]): any[];
-        static write(action: Actions.Action): any;
-        private static writePropertiesAction(action);
+declare module ProStyle.Extensions.Items.Image {
+    import Properties = ProStyle.Models.Properties;
+    class ImagePropertyTypes {
+        private static _propertyTypes;
+        static get(): Properties.IPropertyType[];
     }
 }
 declare module ProStyle.Serialization {
@@ -1625,57 +1565,16 @@ declare module ProStyle.Serialization {
     }
 }
 declare module ProStyle.Serialization {
-    class CanvasReader {
-        static read(json: any): Models.Canvas;
+    import Scripts = ProStyle.Models.Scripts;
+    import Properties = ProStyle.Models.Properties;
+    class ScriptSetReader {
+        private static read(itemModelSet, name, json, propertyTypes);
+        static readJson(itemModelSet: Models.IItemModelSet, name: string, json: any, labels: string[], propertyTypes: Properties.IPropertyType[]): Scripts.ScriptSet;
     }
 }
-declare module ProStyle.Serialization {
-    class CanvasWriter {
-        static write(canvas: Models.Canvas): any;
-    }
-}
-declare module ProStyle.Serialization {
+declare module ProStyle.Extensions.Items.Image {
     import Models = ProStyle.Models;
-    class FlowWriter {
-        static write(flow: Models.Flows.Flow): any;
-    }
-}
-declare module ProStyle.Serialization.Flows {
-    import Models = ProStyle.Models;
-    function read_simple(story: Models.Story, json: any): Models.Flows.Flow;
-}
-declare module ProStyle.Serialization.Flows {
-    import Models = ProStyle.Models;
-    function write_simple(flow: Models.Flows.SimpleFlow, json: any): void;
-}
-declare module ProStyle.Serialization {
-    class FrameReader {
-        static DEFAULT_ASPECT_RATIO: number;
-        static read(json: any): Models.Frame;
-    }
-}
-declare module ProStyle.Serialization {
-    class FrameWriter {
-        static write(frame: Models.Frame): any;
-    }
-}
-declare module ProStyle.Serialization {
-    import Models = ProStyle.Models;
-    class ItemWriter {
-        static write(item: Models.Items.Item): any;
-    }
-}
-declare module ProStyle.Serialization.Items {
-    import Models = ProStyle.Models;
-    function read_image(itemSet: Models.IItemSet, json: any): Models.Items.Item;
-}
-declare module ProStyle.Serialization.Items {
-    import Models = ProStyle.Models;
-    function read_layer(itemSet: Models.IItemSet, json: any): Models.Items.Item;
-}
-declare module ProStyle.Serialization.Items {
-    import Models = ProStyle.Models;
-    function read_text(itemSet: Models.IItemSet, json: any): Models.Items.Item;
+    function deserialize(itemModelSet: Models.IItemModelSet, json: any): ImageItemModel;
 }
 declare module ProStyle.Serialization {
     import Properties = ProStyle.Models.Properties;
@@ -1701,33 +1600,238 @@ declare module ProStyle.Serialization {
         private static writePropertyOrphan(script);
     }
 }
-declare module ProStyle.Serialization.Items {
-    import Models = ProStyle.Models;
-    function write_image(item: Models.Items.ImageItem, json: any): void;
+declare module ProStyle.Extensions.Items.Image {
+    function serialize(item: ImageItemModel): any;
 }
-declare module ProStyle.Serialization.Items {
-    import Models = ProStyle.Models;
-    function write_layer(item: Models.Items.LayerItem, json: any): void;
+declare module ProStyle.Extensions.Items.Layer {
+    import Scripts = ProStyle.Models.Scripts;
+    class LayerItemModel extends Models.Items.ItemModel implements Models.IItemModelSet {
+        items: Models.Items.ItemModel[];
+        flow: Models.Flows.FlowModel;
+        story: Models.Story;
+        constructor(itemModelSet: Models.IItemModelSet, init: Models.Properties.PropertyList, scriptSet: Scripts.ScriptSet);
+        getCountOfStepsUsed(): number;
+        serialize(): any;
+        createView(itemViewSet: Views.IItemViewSet): LayerItemView;
+    }
 }
-declare module ProStyle.Serialization.Items {
-    import Models = ProStyle.Models;
-    function write_text(item: Models.Items.TextItem, json: any): void;
+declare module ProStyle.Extensions.Items.Layer {
+    import Items = ProStyle.Views.Items;
+    class LayerItemView extends Views.Items.ItemView implements Views.IItemViewSet {
+        model: LayerItemModel;
+        items: Items.ItemView[];
+        constructor(model: LayerItemModel, itemViewSet: Views.IItemViewSet);
+        initializeItem(timeline: TimelineMax, cameraSize: Types.Size): void;
+        generateStepActions(itemViewSet: Views.IItemViewSet, pageSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string): void;
+    }
+}
+declare module ProStyle.Extensions.Items.Layer {
+    import Properties = ProStyle.Models.Properties;
+    class LayerPropertyTypes {
+        private static _propertyTypes;
+        static get(): Properties.IPropertyType[];
+    }
 }
 declare module ProStyle.Serialization {
     import Models = ProStyle.Models;
     import Flows = ProStyle.Models.Flows;
     import Items = ProStyle.Models.Items;
     class PageReader {
-        static read(flow: Flows.Flow, json: any): Models.Page;
+        static read(flow: Flows.FlowModel, json: any): Models.PageModel;
         private static readSteps(page, json, items);
-        static readItems(itemSet: Models.IItemSet, json: any): Items.Item[];
+        static readItems(itemModelSet: Models.IItemModelSet, json: any): Items.ItemModel[];
+    }
+}
+declare module ProStyle.Extensions.Items.Layer {
+    import Models = ProStyle.Models;
+    function deserialize(itemModelSet: Models.IItemModelSet, json: any): LayerItemModel;
+}
+declare module ProStyle.Extensions.Items.Layer {
+    function serialize(model: LayerItemModel): any;
+}
+declare module ProStyle.Extensions.Items.Text {
+    import Models = ProStyle.Models;
+    import Items = Models.Items;
+    import Properties = Models.Properties;
+    import Scripts = Models.Scripts;
+    class TextItemModel extends Items.ItemModel {
+        text: string;
+        stackedLines: boolean;
+        stackedWords: boolean;
+        stackedChars: boolean;
+        linesInit: Properties.PropertyList;
+        linesScriptSet: Scripts.ScriptSet;
+        wordsInit: Properties.PropertyList;
+        wordsScriptSet: Scripts.ScriptSet;
+        charsInit: Properties.PropertyList;
+        charsScriptSet: Scripts.ScriptSet;
+        constructor(itemModelSet: Models.IItemModelSet, text: string, stackedLines: boolean, stackedWords: boolean, stackedChars: boolean, init: Properties.PropertyList, scriptSet: Scripts.ScriptSet, linesInit: Properties.PropertyList, linesScriptSet: Scripts.ScriptSet, wordsInit: Properties.PropertyList, wordsScriptSet: Scripts.ScriptSet, charsInit: Properties.PropertyList, charsScriptSet: Scripts.ScriptSet);
+        serialize(): any;
+        createView(itemViewSet: Views.IItemViewSet): TextItemView;
+    }
+}
+declare module ProStyle.Extensions.Items.Text {
+    import Items = ProStyle.Views.Items;
+    class TextItemView extends Items.ItemView {
+        model: TextItemModel;
+        splitText: any;
+        lines: boolean;
+        words: boolean;
+        chars: boolean;
+        constructor(model: TextItemModel, itemViewSet: ProStyle.Views.IItemViewSet);
+        initializeItem(timeline: TimelineMax, cameraSize: Types.Size): void;
+        generateStepActions(itemViewSet: Views.IItemViewSet, pageSize: Types.Size, timeline: TimelineMax, stepIndex: number, label: string): void;
+    }
+}
+declare module ProStyle.Extensions.Items.Text {
+    import Properties = ProStyle.Models.Properties;
+    class TextPropertyTypes {
+        private static _propertyTypes;
+        private static _linePropertyTypes;
+        private static _wordPropertyTypes;
+        private static _charPropertyTypes;
+        private static cacheProperties();
+        private static addPropertyType(arrays, propertyType);
+        static get(): Properties.IPropertyType[];
+        static getForLines(): Properties.IPropertyType[];
+        static getForWords(): Properties.IPropertyType[];
+        static getForChars(): Properties.IPropertyType[];
+    }
+}
+declare module ProStyle.Extensions.Items.Text {
+    import Models = ProStyle.Models;
+    function deserialize(itemModelSet: Models.IItemModelSet, json: any): TextItemModel;
+}
+declare module ProStyle.Extensions.Items.Text {
+    function serialize(model: TextItemModel): any;
+}
+declare module ProStyle.Extensions.Items.Unknown {
+    import Items = ProStyle.Views.Items;
+    class UnknownItemView extends Items.ItemView {
+        model: UnknownItemModel;
+        private divs;
+        constructor(model: UnknownItemModel, itemViewSetElem: ProStyle.Views.IItemViewSet);
+    }
+}
+declare module ProStyle.Extensions.Items.Unknown {
+    function serialize(model: UnknownItemModel): any;
+}
+declare module ProStyle.Extensions.Controllers.Auto {
+    class AutoController extends ProStyle.Controllers.Controller {
+        canvas: Views.CanvasView;
+        player: Play.IPlayer;
+        start: number;
+        stepAdvance: number;
+        restart: number;
+        resize: boolean;
+        constructor(canvas: Views.CanvasView, player: Play.IPlayer, start?: number, stepAdvance?: number, restart?: number, resize?: boolean);
+        serialize(): any;
+    }
+}
+declare module ProStyle.Extensions.Controllers.Auto {
+    function deserialize(canvas: Views.CanvasView, player: Play.IPlayer, json: any): AutoController;
+}
+declare module ProStyle.Extensions.Controllers.Auto {
+    function serialize(controller: AutoController): any;
+}
+declare module ProStyle.Extensions.Controllers.Keyboard {
+    class KeyboardController extends ProStyle.Controllers.Controller {
+        canvas: Views.CanvasView;
+        player: Play.IPlayer;
+        constructor(canvas: Views.CanvasView, player: Play.IPlayer);
+        serialize(): any;
+    }
+}
+declare module ProStyle.Extensions.Controllers.Keyboard {
+    function deserialize(canvas: Views.CanvasView, player: Play.IPlayer, json: any): KeyboardController;
+}
+declare module ProStyle.Extensions.Controllers.Keyboard {
+    function serialize(controller: KeyboardController): any;
+}
+declare module ProStyle.Extensions.Controllers.Track {
+    class TrackController extends ProStyle.Controllers.Controller {
+        canvas: Views.CanvasView;
+        player: Play.IPlayer;
+        constructor(canvas: Views.CanvasView, player: Play.IPlayer);
+        serialize(): any;
+    }
+}
+declare module ProStyle.Extensions.Controllers.Track {
+    function deserialize(canvas: Views.CanvasView, player: Play.IPlayer, json: any): TrackController;
+}
+declare module ProStyle.Extensions.Controllers.Track {
+    function serialize(controller: TrackController): any;
+}
+declare module ProStyle.Extensions.Controllers.Unknown {
+    class UnknownController extends ProStyle.Controllers.Controller {
+        canvas: Views.CanvasView;
+        player: Play.IPlayer;
+        originalJson: any;
+        constructor(canvas: Views.CanvasView, player: Play.IPlayer, originalJson: any);
+        serialize(): any;
+    }
+}
+declare module ProStyle.Extensions.Controllers.Unknown {
+    function deserialize(canvas: Views.CanvasView, player: Play.IPlayer, json: any): UnknownController;
+}
+declare module ProStyle.Extensions.Controllers.Unknown {
+    function serialize(controller: UnknownController): any;
+}
+declare module ProStyle.Serialization {
+    import Actions = ProStyle.Models.Actions;
+    import Scripts = ProStyle.Models.Scripts;
+    class ActionReader {
+        static readArray(script: Scripts.ActionsScript, json: any): Actions.Action[];
+        static read(script: Scripts.ActionsScript, json: any): Actions.Action;
+        private static readPropertiesAction(script, json);
+    }
+}
+declare module ProStyle.Serialization {
+    import Actions = ProStyle.Models.Actions;
+    class ActionWriter {
+        static writeArray(actions: Actions.Action[]): any[];
+        static write(action: Actions.Action): any;
+        private static writePropertiesAction(action);
+    }
+}
+declare module ProStyle.Serialization {
+    class CanvasReader {
+        static read(json: any): Models.CanvasModel;
+    }
+}
+declare module ProStyle.Serialization {
+    class CanvasWriter {
+        static write(canvas: Models.CanvasModel): any;
+    }
+}
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
+    class FlowWriter {
+        static write(flow: Models.Flows.FlowModel): any;
+    }
+}
+declare module ProStyle.Serialization {
+    class FrameReader {
+        static DEFAULT_ASPECT_RATIO: number;
+        static read(json: any): Models.FrameModel;
+    }
+}
+declare module ProStyle.Serialization {
+    class FrameWriter {
+        static write(frame: Models.FrameModel): any;
+    }
+}
+declare module ProStyle.Serialization {
+    import Models = ProStyle.Models;
+    class ItemWriter {
+        static write(item: Models.Items.ItemModel): any;
     }
 }
 declare module ProStyle.Serialization {
     import Models = ProStyle.Models;
     class PageWriter {
-        static write(page: Models.Page): any;
-        static writeItems(itemSet: Models.IItemSet, json: any): void;
+        static write(page: Models.PageModel): any;
+        static writeItems(itemModelSet: Models.IItemModelSet, json: any): void;
     }
 }
 declare module ProStyle.Serialization {
@@ -1739,14 +1843,6 @@ declare module ProStyle.Serialization {
         private static readSwitchEvent(scriptSet, json);
         private static readActionsOrphan(scriptSet, json);
         private static readPropertyOrphan(scriptSet, json);
-    }
-}
-declare module ProStyle.Serialization {
-    import Scripts = ProStyle.Models.Scripts;
-    import Properties = ProStyle.Models.Properties;
-    class ScriptSetReader {
-        private static read(itemSet, name, json, propertyTypes);
-        static readJson(itemSet: Models.IItemSet, name: string, json: any, labels: string[], propertyTypes: Properties.IPropertyType[]): Scripts.ScriptSet;
     }
 }
 declare module ProStyle.Serialization {
@@ -1770,7 +1866,7 @@ declare module ProStyle.Serialization {
 declare module ProStyle.Serialization {
     import Models = ProStyle.Models;
     class StepReader {
-        static read(page: Models.Page, json: any): Models.Step;
+        static read(page: Models.PageModel, json: any): Models.Step;
     }
 }
 declare module ProStyle.Serialization {
@@ -1792,10 +1888,13 @@ declare module ProStyle.Serialization {
         static stringify(story: Models.Story): string;
     }
 }
-declare module ProStyle.Util {
-    function createChildSvgElement(parent: Element, tag: string, attrs?: any): SVGElement;
+declare module ProStyle {
+    var defaultControllers: Controllers.Controller[];
 }
 declare module ProStyle {
     function reload(): void;
     function bootstrap(): void;
+}
+declare module ProStyle.Util {
+    function createChildSvgElement(parent: Element, tag: string, attrs?: any): SVGElement;
 }

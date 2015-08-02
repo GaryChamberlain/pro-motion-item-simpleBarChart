@@ -1,12 +1,12 @@
 /// <reference path="../ts/prostyle.d.ts" />
-/// <reference path="Extension.ts" />
+/// <reference path="SimpleBarChartItemModel.ts" />
 
-module ProStyle.Extensions.Items.simpleBarChart {
+module ProStyle.Extensions.Items.SimpleBarChart {
 
-    import Render = ProStyle.Render;
+    import Views = ProStyle.Views;
     import Util = ProStyle.Util;
 
-    export class Renderer extends Render.Items.Item {
+    export class SimpleBarChartItemView extends Views.Items.ItemView {
 
         private g: SVGGElement;
         private barDivs: SVGRectElement[] = [];
@@ -22,58 +22,56 @@ module ProStyle.Extensions.Items.simpleBarChart {
         private domainBase = 0;  //The baseline for bars (values above this go up, below go down)
         private rangeBase = 0;   //The baseline in pixels from the top
 
-        constructor(private simpleBarChartItem: Extension, itemSetElem: Render.IItemSet) {
-            super(simpleBarChartItem, itemSetElem, Util.createChildSvgElement(itemSetElem.div, "svg", {"class": "pro"}));
+        constructor(public model: SimpleBarChartItemModel, itemViewSet: Views.IItemViewSet) {
+            super(model, itemViewSet, Util.createChildSvgElement(itemViewSet.div, "svg", {"class": "prostyle"}));
             this.g = <SVGGElement>Util.createChildSvgElement(this.element, "g");
-            for (var c = 0; c < simpleBarChartItem.bars; c++) {
+            for (var c = 0; c < model.bars; c++) {
                 this.barDivs.push(<SVGRectElement>Util.createChildSvgElement(this.g, "rect"));
             }
 
             //It is expected that maxDomain >= minDomain (Serialization reader swaps the values if needed)
-            this.maxDomain = simpleBarChartItem.maxDomainValue;
-            this.minDomain = simpleBarChartItem.minDomainValue;
+            this.maxDomain = model.maxDomainValue;
+            this.minDomain = model.minDomainValue;
 
             this.domain = Math.abs(this.maxDomain - this.minDomain);
             this.domainBase = this.maxDomain < 0 ? this.maxDomain : (this.minDomain > 0 ? this.minDomain : 0);
         }
 
         public initializeItem(timeline: TimelineMax, cameraSize: Types.Size) {
-            var item = this.simpleBarChartItem;
-            var story = item.itemSet.flow.story;
-            var pageAspectRatio = item.itemSet.flow.pageAspectRatio;
+            var story = this.model.itemModelSet.flow.story;
+            var pageAspectRatio = this.model.itemModelSet.flow.pageAspectRatio;
             var pageSize = cameraSize.getContainedSize(pageAspectRatio);
 
-            this.width = (item.width / 100) * pageSize.width;
-            this.height = (item.height / 100) * pageSize.height;
-            this.margin = this.simpleBarChartItem.margin / 100 * this.width;
+            this.width = (this.model.width / 100) * pageSize.width;
+            this.height = (this.model.height / 100) * pageSize.height;
+            this.margin = this.model.margin / 100 * this.width;
 
-            if (this.margin * (this.simpleBarChartItem.bars + 1) > this.width) {
-                this.margin = this.width / (this.simpleBarChartItem.bars + 1);
+            if (this.margin * (this.model.bars + 1) > this.width) {
+                this.margin = this.width / (this.model.bars + 1);
             }
             else {
-                this.barWidth = (this.width - this.margin * this.simpleBarChartItem.bars) / this.simpleBarChartItem.bars;
+                this.barWidth = (this.width - this.margin * this.model.bars) / this.model.bars;
             }
 
-            this.rangeBase = Math.abs(this.simpleBarChartItem.maxDomainValue - this.domainBase) / this.domain * this.height;
+            this.rangeBase = Math.abs(this.model.maxDomainValue - this.domainBase) / this.domain * this.height;
 
             var forceProps: any = {width: this.width, height: this.height};
 
-            this.initializeProperties(story, [this.element], pageSize, timeline, item.init, true, forceProps);
+            this.initializeProperties(story, [this.element], pageSize, timeline, this.model.init, true, forceProps);
 
             forceProps = {};
 
-            this.initializeProperties(story, this.barDivs, pageSize, timeline, item.barsInit, false, forceProps,
+            this.initializeProperties(story, this.barDivs, pageSize, timeline, this.model.barsInit, false, forceProps,
                                       this.afterBarCssProperties.bind(this));
         }
 
-        public generateStepActions(itemSet: Render.IItemSet,
+        public generateStepActions(itemViewSet: Views.IItemViewSet,
                                    pageSize: Types.Size,
                                    timeline: TimelineMax,
                                    stepIndex: number,
                                    label: string) {
-            var item = this.simpleBarChartItem;
-            this.generateActionsForStep(itemSet, [this.element], pageSize, timeline, stepIndex, label, item.scriptSet);
-            this.generateActionsForStep(itemSet, this.barDivs, pageSize, timeline, stepIndex, label, item.barsScriptSet,
+            this.generateActionsForStep(itemViewSet, [this.element], pageSize, timeline, stepIndex, label, this.model.scriptSet);
+            this.generateActionsForStep(itemViewSet, this.barDivs, pageSize, timeline, stepIndex, label, this.model.barsScriptSet,
                                         this.afterBarCssProperties.bind(this));
         }
 
@@ -88,8 +86,6 @@ module ProStyle.Extensions.Items.simpleBarChart {
 
                 var datumFrom = Util.convertToNumber(bucket.element.proCache.data[0], this.domainBase);
                 var datumTo = Util.convertToNumber(bucket.element.proCache.data[1], this.domainBase);
-
-                console.log(bucket.element.proCache, datumFrom, datumTo);
 
                 var y = (this.maxDomain - Math.max(datumFrom, datumTo)) / this.domain * this.height;
                 var h = ((this.maxDomain - Math.min(datumFrom, datumTo)) / this.domain * this.height) - y;

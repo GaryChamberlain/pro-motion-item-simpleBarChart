@@ -1,14 +1,16 @@
 /// <reference path="../ts/prostyle.d.ts" />
+/// <reference path="serialize.ts" />
+/// <reference path="SimpleBarChartItemView.ts" />
 
-module ProStyle.Extensions.Items.simpleBarChart {
+module ProStyle.Extensions.Items.SimpleBarChart {
 
     import Models = ProStyle.Models;
     import Properties = Models.Properties;
     import Scripts = Models.Scripts;
 
-    export class Extension extends Models.Items.Item {
+    export class SimpleBarChartItemModel extends Models.Items.ItemModel {
 
-        constructor(itemSet: ProStyle.Models.IItemSet,
+        constructor(itemSet: ProStyle.Models.IItemModelSet,
                     public bars: number,
                     public width: number,
                     public height: number,
@@ -22,6 +24,14 @@ module ProStyle.Extensions.Items.simpleBarChart {
 
             super(itemSet, "simpleBarChart", "SimpleBarChart", [init, barsInit], [scriptSet, barsScriptSet]);
 
+        }
+        
+        public serialize(): any {
+            return SimpleBarChart.serialize(this);
+        }
+
+        public createView(itemViewSet: Views.IItemViewSet): SimpleBarChartItemView {
+            return new SimpleBarChartItemView(this, itemViewSet);
         }
     }
 }

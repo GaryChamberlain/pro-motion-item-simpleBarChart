@@ -1,22 +1,22 @@
 /// <reference path="../ts/prostyle.d.ts" />
-/// <reference path="Extension.ts" />
+/// <reference path="SimpleBarChartItemModel.ts" />
 /// <reference path="BarDataPropertyType.ts" />
 
-module ProStyle.Extensions.Items.simpleBarChart {
+module ProStyle.Extensions.Items.SimpleBarChart {
 
     import Properties = ProStyle.Models.Properties;
 
-    export class Props {
+    export class SimpleBarChartPropertyTypes {
 
         private static _propertyTypes: ProStyle.Models.Properties.IPropertyType[] = undefined;
         private static _barPropertyTypes: ProStyle.Models.Properties.IPropertyType[] = undefined;
 
         private static cacheProperties() {
 
-            Props._propertyTypes = [];
-            Props._barPropertyTypes = [];
+            SimpleBarChartPropertyTypes._propertyTypes = [];
+            SimpleBarChartPropertyTypes._barPropertyTypes = [];
 
-            var p = Props._propertyTypes;
+            var p = SimpleBarChartPropertyTypes._propertyTypes;
             //p.push(Properties.Cache.ANCHOR);
             p.push(Properties.Cache.ANIMATION);
             //p.push(Properties.Cache.BACKGROUND);
@@ -30,7 +30,7 @@ module ProStyle.Extensions.Items.simpleBarChart {
             p.push(Properties.Cache.SKEW);
             //p.push(Properties.Cache.TRANSFORM_ORIGIN);
 
-            var p = Props._barPropertyTypes;
+            var p = SimpleBarChartPropertyTypes._barPropertyTypes;
             p.push(Properties.Cache.ANIMATION);
             p.push(new Properties.SvgFillPropertyType("rgba(0,0,0,0.5)"));
             p.push(Properties.Cache.OPACITY);
@@ -38,14 +38,14 @@ module ProStyle.Extensions.Items.simpleBarChart {
             p.push(new BarDataPropertyType());
         }
 
-        public static getPropertyTypes(): ProStyle.Models.Properties.IPropertyType[] {
-            if (Props._propertyTypes === undefined) Props.cacheProperties();
-            return Props._propertyTypes;
+        public static get(): ProStyle.Models.Properties.IPropertyType[] {
+            if (SimpleBarChartPropertyTypes._propertyTypes === undefined) SimpleBarChartPropertyTypes.cacheProperties();
+            return SimpleBarChartPropertyTypes._propertyTypes;
         }
 
-        public static getBarPropertyTypes(): ProStyle.Models.Properties.IPropertyType[] {
-            if (Props._barPropertyTypes === undefined) Props.cacheProperties();
-            return Props._barPropertyTypes;
+        public static getForBars(): ProStyle.Models.Properties.IPropertyType[] {
+            if (SimpleBarChartPropertyTypes._barPropertyTypes === undefined) SimpleBarChartPropertyTypes.cacheProperties();
+            return SimpleBarChartPropertyTypes._barPropertyTypes;
         }
     }
 }
